@@ -1,0 +1,217 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototipoapi\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|solutionrelative:prototipoapi\\controllers\\imagecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototiposervice\\configurations\\userinfoentitytypeconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\configurations\\userinfoentitytypeconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototiposervice\\services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\services\\imageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototiposervice\\entities\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\entities\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototipoapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|solutionrelative:prototipoapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototipoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|solutionrelative:prototipoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototiposervice\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\databasecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototiposervice\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototipoapi\\controllers\\userinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|solutionrelative:prototipoapi\\controllers\\userinfocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototiposervice\\configurations\\categoryentitytypeconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\configurations\\categoryentitytypeconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user06_14_1\\documents\\2.02 progetto industriale\\vasyl\\prototipo\\prototiposervice\\model\\userinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\model\\userinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Image.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Entities\\Image.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\Entities\\Image.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Entities\\Image.cs",
+              "RelativeToolTip": "PrototipoService\\Entities\\Image.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T14:05:51.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Report.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Entities\\Report.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\Entities\\Report.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Entities\\Report.cs",
+              "RelativeToolTip": "PrototipoService\\Entities\\Report.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T14:04:22.515Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\appsettings.json",
+              "RelativeDocumentMoniker": "PrototipoApi\\appsettings.json",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\appsettings.json",
+              "RelativeToolTip": "PrototipoApi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-30T13:52:34.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ImageService.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Services\\ImageService.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\Services\\ImageService.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Services\\ImageService.cs",
+              "RelativeToolTip": "PrototipoService\\Services\\ImageService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAE0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T13:51:14.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ImageController.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\Controllers\\ImageController.cs",
+              "RelativeDocumentMoniker": "PrototipoApi\\Controllers\\ImageController.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\Controllers\\ImageController.cs",
+              "RelativeToolTip": "PrototipoApi\\Controllers\\ImageController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T13:41:10.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserInfoEntityTypeConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Configurations\\UserInfoEntityTypeConfiguration.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\Configurations\\UserInfoEntityTypeConfiguration.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Configurations\\UserInfoEntityTypeConfiguration.cs",
+              "RelativeToolTip": "PrototipoService\\Configurations\\UserInfoEntityTypeConfiguration.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAABoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T11:38:52.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\Program.cs",
+              "RelativeDocumentMoniker": "PrototipoApi\\Program.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\Program.cs",
+              "RelativeToolTip": "PrototipoApi\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T14:50:04.977Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DatabaseContext.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\DatabaseContext.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\DatabaseContext.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\DatabaseContext.cs",
+              "RelativeToolTip": "PrototipoService\\DatabaseContext.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T14:07:46.114Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserInfoController.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\Controllers\\UserInfoController.cs",
+              "RelativeDocumentMoniker": "PrototipoApi\\Controllers\\UserInfoController.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoApi\\Controllers\\UserInfoController.cs",
+              "RelativeToolTip": "PrototipoApi\\Controllers\\UserInfoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T10:46:41.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CategoryEntityTypeConfigurations.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Configurations\\CategoryEntityTypeConfigurations.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\Configurations\\CategoryEntityTypeConfigurations.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Configurations\\CategoryEntityTypeConfigurations.cs",
+              "RelativeToolTip": "PrototipoService\\Configurations\\CategoryEntityTypeConfigurations.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T11:38:51.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserInfoDTO.cs",
+              "DocumentMoniker": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Model\\UserInfoDTO.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\Model\\UserInfoDTO.cs",
+              "ToolTip": "C:\\Users\\user06_14_1\\Documents\\2.02 Progetto industriale\\Vasyl\\Prototipo\\PrototipoService\\Model\\UserInfoDTO.cs",
+              "RelativeToolTip": "PrototipoService\\Model\\UserInfoDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T09:16:36.511Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
