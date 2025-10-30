@@ -13,7 +13,7 @@ public interface ICategoryService
     Task<CategoryViewModel> GetCategoryById(int id);
     Task<List<CategoryViewModel>> GetAllCategories();
     Task AddCategory(CategoryDTO categoryDTO);
-    Task UpdateCategory(int id);
+    Task UpdateCategory(int id, CategoryUpdateDTO categoryDTO);
     Task DeleteCategory(int id);
 
 }

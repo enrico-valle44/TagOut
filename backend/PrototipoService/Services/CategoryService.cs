@@ -2,11 +2,6 @@
 using PrototipoService.Entities;
 using PrototipoService.Model;
 using PrototipoService.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrototipoService.Services;
 
@@ -21,27 +16,41 @@ public class CategoryService : ICategoryService
 
     public async Task<List<CategoryViewModel>> GetAllCategories()
     {
-        return await _context.Categories
-                     .Select(c => new CategoryViewModel
-                     {
-                         Id = c.Id,
-                         Name = c.Name,
-                         Description = c.Description
-                     })
-                     .ToListAsync();
+        try
+        {
+            return await _context.Categories
+                .Select(c => new CategoryViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Description = c.Description
+                })
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Errore durante il recupero di tutte le categorie", ex);
+        }
     }
 
     public async Task<CategoryViewModel> GetCategoryById(int id)
     {
-        var c = await _context.Categories.FindAsync(id);
-        if (c == null) return null;
-
-        return new CategoryViewModel
+        try
         {
-            Id = c.Id,
-            Name = c.Name,
-            Description = c.Description
-        };
+            var c = await _context.Categories.FindAsync(id);
+            if (c == null) return null;
+
+            return new CategoryViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Description = c.Description
+            };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Errore durante il recupero della categoria con id {id}", ex);
+        }
     }
     public async Task AddCategory(CategoryDTO categoryDTO)
     {
@@ -51,12 +60,37 @@ public class CategoryService : ICategoryService
             Description = categoryDTO.Description
         };
 
-        await _context.Categories.AddAsync(category);
-        await _context.SaveChangesAsync();
+        try
+        {
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            throw new Exception("Errore durante l'aggiunta della categoria", ex);
+        }
     }
-    public Task UpdateCategory(int id)
+    public async Task UpdateCategory(int id, CategoryUpdateDTO categoryDTO)
     {
-        throw new NotImplementedException();
+        var category = await _context.Categories.FindAsync(id);
+
+        if (category == null)
+            throw new KeyNotFoundException($"Categoria con id {id} non trovata");
+
+        if (!string.IsNullOrWhiteSpace(categoryDTO.Name))
+            category.Name = categoryDTO.Name;
+
+        if (!string.IsNullOrWhiteSpace(categoryDTO.Description))
+            category.Description = categoryDTO.Description;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException dbEx)
+        {
+            throw new Exception($"Errore durante l'aggiornamento della categoria con id {id}", dbEx);
+        }
     }
     public async Task DeleteCategory(int id)
     {
@@ -67,8 +101,15 @@ public class CategoryService : ICategoryService
             throw new KeyNotFoundException($"Categoria con id {id} non trovata");
         }
 
-        _context.Categories.Remove(c);
-        await _context.SaveChangesAsync();
+        try
+        {
+            _context.Categories.Remove(c);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            throw new Exception($"Errore durante l'eliminazione della categoria con id {id}", ex);
+        }
     }
 
 }

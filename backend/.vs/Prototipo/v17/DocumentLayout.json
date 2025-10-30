@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\user25_14_1\\Documents\\2.02-Progetto Industriale\\TagOut\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|c:\\users\\user25_14_1\\documents\\2.02-progetto industriale\\tagout\\backend\\prototipoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|solutionrelative:prototipoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|c:\\users\\user25_14_1\\documents\\2.02-progetto industriale\\tagout\\backend\\prototipoapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{36A22A84-F69B-4D5B-99D8-55F006396619}|PrototipoApi\\PrototipoApi.csproj|solutionrelative:prototipoapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|c:\\users\\user25_14_1\\documents\\2.02-progetto industriale\\tagout\\backend\\prototiposervice\\services\\interface\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB76946B-7F6B-4AE1-A90C-C159B561C41E}|PrototipoService\\PrototipoService.csproj|solutionrelative:prototiposervice\\services\\interface\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,26 +26,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\user25_14_1\\Documents\\2.02-Progetto Industriale\\TagOut\\backend\\PrototipoApi\\Program.cs",
-              "RelativeDocumentMoniker": "PrototipoApi\\Program.cs",
-              "ToolTip": "C:\\Users\\user25_14_1\\Documents\\2.02-Progetto Industriale\\TagOut\\backend\\PrototipoApi\\Program.cs",
-              "RelativeToolTip": "PrototipoApi\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ICategoryService.cs",
+              "DocumentMoniker": "C:\\Users\\user25_14_1\\Documents\\2.02-Progetto Industriale\\TagOut\\backend\\PrototipoService\\Services\\Interface\\ICategoryService.cs",
+              "RelativeDocumentMoniker": "PrototipoService\\Services\\Interface\\ICategoryService.cs",
+              "ToolTip": "C:\\Users\\user25_14_1\\Documents\\2.02-Progetto Industriale\\TagOut\\backend\\PrototipoService\\Services\\Interface\\ICategoryService.cs",
+              "RelativeToolTip": "PrototipoService\\Services\\Interface\\ICategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T16:41:51.875Z",
+              "WhenOpened": "2025-10-30T21:51:33.776Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "C:\\Users\\user25_14_1\\Documents\\2.02-Progetto Industriale\\TagOut\\backend\\PrototipoApi\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "PrototipoApi\\Controllers\\CategoryController.cs",
               "ToolTip": "C:\\Users\\user25_14_1\\Documents\\2.02-Progetto Industriale\\TagOut\\backend\\PrototipoApi\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "PrototipoApi\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAQwEEAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAA3wFEAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-30T16:39:40.664Z",
               "EditorCaption": ""

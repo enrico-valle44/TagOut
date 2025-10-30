@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Options;
 using Npgsql;
 using PrototipoApi.Controllers;
 using PrototipoService;
@@ -17,8 +15,9 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DatabaseContext>(options =>
     {
-        options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //serve per sfeficare che non vogliamp un contesto in cui vengano segnate le modifiche
+        options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //serve per specificare che non vogliamo un contesto in cui vengano segnate le modifiche
         options.UseNpgsql(connectionString); //visto che vogliamo implementare l'ORM con EF... stiamo usando un approccio DbFirst... quando useremo le migrazioni ci svincoleremo da questa robaccia
+                                             //bel commento ;-)
     }
     );
 

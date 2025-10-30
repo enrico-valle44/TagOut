@@ -15,7 +15,7 @@ public class ImageController : ControllerBase
 
 
     //creazione del primo endpoint
-    [HttpPost("upload/report/{reportId}")] //la chiamiamo cosi perche non è una post normale. salvataggio fisico sul disco (del file), perche scrive sul disco e sul db
+    [HttpPost("upload/report/{reportId}")] //la chiamiamo cosi perché non è una post normale. salvataggio fisico sul disco (del file), perché scrive sul disco e sul db
     public async Task<IActionResult> UploadFile(IFormFile file, [FromRoute] int reportId ) {
 
         string result = await _service.UploadFileImages(file, reportId);
