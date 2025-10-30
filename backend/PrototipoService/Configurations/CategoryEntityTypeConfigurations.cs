@@ -14,15 +14,12 @@ public class CategoryEntityTypeConfigurations : IEntityTypeConfiguration<Categor
 
     public void Configure(EntityTypeBuilder<Category> builder)
     {
-        builder.HasKey(x => x.Id);
-        builder.Property(x => x.Id).HasColumnName("id");
-        
-        builder.Property(x => x.Name).HasColumnName("name");
-
-        builder.Property(x => x.Description).HasColumnName("description");
-
-
-
         builder.ToTable("category", "cust");
+        builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id)
+                .HasColumnName("id")
+                .ValueGeneratedOnAdd();
+        builder.Property(x => x.Name).HasColumnName("name").IsRequired();
+        builder.Property(x => x.Description).HasColumnName("description");
     }
 }

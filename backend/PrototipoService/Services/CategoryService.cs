@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PrototipoService.Entities;
 using PrototipoService.Model;
 using PrototipoService.Services.Interface;
 using System;
@@ -11,42 +12,63 @@ namespace PrototipoService.Services;
 
 public class CategoryService : ICategoryService
 {
-
     private readonly DatabaseContext _context;
+
     public CategoryService(DatabaseContext context)
     {
         _context = context;
     }
 
-    public void AddCategory(CategoryDTO categoryDTO)
+    public async Task<List<CategoryViewModel>> GetAllCategories()
+    {
+        return await _context.Categories
+                     .Select(c => new CategoryViewModel
+                     {
+                         Id = c.Id,
+                         Name = c.Name,
+                         Description = c.Description
+                     })
+                     .ToListAsync();
+    }
+
+    public async Task<CategoryViewModel> GetCategoryById(int id)
+    {
+        var c = await _context.Categories.FindAsync(id);
+        if (c == null) return null;
+
+        return new CategoryViewModel
+        {
+            Id = c.Id,
+            Name = c.Name,
+            Description = c.Description
+        };
+    }
+    public async Task AddCategory(CategoryDTO categoryDTO)
+    {
+        var category = new Category
+        {
+            Name = categoryDTO.Name,
+            Description = categoryDTO.Description
+        };
+
+        await _context.Categories.AddAsync(category);
+        await _context.SaveChangesAsync();
+    }
+    public Task UpdateCategory(int id)
     {
         throw new NotImplementedException();
     }
-
-    public List<CategoryViewModel> getAllCategories()
+    public async Task DeleteCategory(int id)
     {
-        // Query diretta sul DbSet
-        var result = _context.Categories
-            .OrderBy(c => c.Name)             //ordinae
-            .Select(c => new CategoryViewModel //crea un nuovo oggetto viewmodel per ogni record
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Description = c.Description
-            })
-            .ToList();                         //restituisce la lista
+        var c = await _context.Categories.FindAsync(id);
 
-        return result;
+        if (c == null)
+        {
+            throw new KeyNotFoundException($"Categoria con id {id} non trovata");
+        }
+
+        _context.Categories.Remove(c);
+        await _context.SaveChangesAsync();
     }
 
-    public CategoryViewModel getCategory(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public string GetName()
-    {
-        var a = _context.Categories.Single(x => x.Id == 1);
-        return a.Name ;
-    }
 }

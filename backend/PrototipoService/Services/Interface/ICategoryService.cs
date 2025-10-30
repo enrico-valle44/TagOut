@@ -10,8 +10,10 @@ namespace PrototipoService.Services.Interface;
 
 public interface ICategoryService
 {
-    List<CategoryViewModel> getAllCategories();
-    CategoryViewModel getCategory(int id);
-    void AddCategory(CategoryDTO categoryDTO);
+    Task<CategoryViewModel> GetCategoryById(int id);
+    Task<List<CategoryViewModel>> GetAllCategories();
+    Task AddCategory(CategoryDTO categoryDTO);
+    Task UpdateCategory(int id);
+    Task DeleteCategory(int id);
 
 }

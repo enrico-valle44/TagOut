@@ -22,7 +22,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
     }
     );
 
-//abbiamo busogno dei service, che viene distrutto alla fine di ogni utilizzo
+//abbiamo bisogno dei service, che viene distrutto alla fine di ogni utilizzo
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserInfoService, UserInfoService>(); 
 builder.Services.AddScoped<IImageService, ImageService>(); 

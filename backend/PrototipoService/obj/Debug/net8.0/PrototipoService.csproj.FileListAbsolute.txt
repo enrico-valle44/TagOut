@@ -10,3 +10,16 @@ C:\Users\user06_14_1\Documents\2.02 Progetto industriale\Vasyl\Prototipo\Prototi
 C:\Users\user06_14_1\Documents\2.02 Progetto industriale\Vasyl\Prototipo\PrototipoService\obj\Debug\net8.0\refint\PrototipoService.dll
 C:\Users\user06_14_1\Documents\2.02 Progetto industriale\Vasyl\Prototipo\PrototipoService\obj\Debug\net8.0\PrototipoService.pdb
 C:\Users\user06_14_1\Documents\2.02 Progetto industriale\Vasyl\Prototipo\PrototipoService\obj\Debug\net8.0\ref\PrototipoService.dll
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\bin\Debug\net8.0\PrototipoService.deps.json
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\bin\Debug\net8.0\PrototipoService.dll
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\bin\Debug\net8.0\PrototipoService.pdb
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.csproj.AssemblyReference.cache
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.AssemblyInfoInputs.cache
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.AssemblyInfo.cs
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.csproj.CoreCompileInputs.cache
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.sourcelink.json
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.dll
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\refint\PrototipoService.dll
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\PrototipoService.pdb
+C:\Users\user25_14_1\Documents\2.02-Progetto Industriale\TagOut\backend\PrototipoService\obj\Debug\net8.0\ref\PrototipoService.dll

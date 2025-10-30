@@ -32,11 +32,11 @@ public class ImageService : IImageService
             return await Task.FromResult("-1"); //fare un return -1 ma si aspetta un Task
         }
         //validazione report, controlliamo la sua esistenza
-        bool exist = await _context.Reports.Where(x => x.Id == reportId).AnyAsync();
-        if (exist == false)
-        {
-            return await Task.FromResult("-2"); //todo gestire le badrequest
-        }
+        //bool exist = await _context.Reports.Where(x => x.Id == reportId).AnyAsync();
+        //if (exist == false)
+        //{
+        //    return await Task.FromResult("-2"); //todo gestire le badrequest
+        //}
 
         //recuperare da appsettings il path su cui salvare il file 
         string? filePath = _configuration["FilePath"]; //filepath restituisce una stringa forse???
@@ -56,14 +56,14 @@ public class ImageService : IImageService
 
         //todo BEGIN transazione
 
-        var imageEntity = new Image
-        {
-            ReportId = reportId,
-            Path = filePathFull,
-        };
+        //var imageEntity = new Image
+        //{
+        //    ReportId = reportId,
+        //    Path = filePathFull,
+        //};
 
-        await _context.Images.AddAsync(imageEntity);
-        await _context.SaveChangesAsync();
+        //await _context.Images.AddAsync(imageEntity);
+        //await _context.SaveChangesAsync();
 
         
 
