@@ -3,7 +3,7 @@ import { FeatureCollection } from 'geojson';
 import { Report } from '../../model/report';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
   constructor() {}
@@ -14,14 +14,20 @@ export class DataService {
       .catch((err) => console.error(err));
   }
 
-  getReports(): Promise<Report[]>{
+  getReports(): Promise<Report[]> {
     return fetch('./assets/reports.json')
       .then((resp) => resp.json())
       .catch((err) => console.error(err));
   }
 
-  getReport(id: number): Promise<Report>{
+  getReport(id: number): Promise<Report> {
     return fetch('./assets/report.json')
+      .then((resp) => resp.json())
+      .catch((err) => console.error(err));
+  }
+
+  getCategories(): Promise<string[]> {
+    return fetch('./assets/categories.json')
       .then((resp) => resp.json())
       .catch((err) => console.error(err));
   }

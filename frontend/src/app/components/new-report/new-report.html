@@ -1,0 +1,19 @@
+<form class="report-form" [formGroup]="reportForm" (ngSubmit)="postReport()">
+    <input type="text" formControlName="title" placeholder="Report Title" />
+    <textarea formControlName="description" placeholder="Report Description"></textarea>
+    <div class="cat-container" formArrayName="categories">
+        <button (click)="addCategoryInput()">+</button>
+        @for (category of categories.controls; track category; let i = $index) {
+            <div>
+                <select formControlName="{{i}}">
+                    @for (name of categoryNames; track $index) {    
+                        <option value="{{name}}">{{name}}</option>
+                    }
+                </select>
+                <button (click)="removeCategoryInput(i)">-</button>
+            </div>
+            
+        }
+    </div>
+    <button [disabled]="!reportForm.valid" type="submit">Invia</button>
+</form>

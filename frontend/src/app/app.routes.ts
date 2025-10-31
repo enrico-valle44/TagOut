@@ -4,6 +4,7 @@ import { Feed } from './components/feed/feed';
 import { Detail } from './components/detail/detail';
 import { User } from './components/user/user';
 import { NotFound } from './components/not-found/not-found';
+import { NewReport } from './components/new-report/new-report';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/map', pathMatch: 'full' },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'feed', component: Feed },
   { path: 'detail/:id', component: Detail },
   { path: 'user', component: User },
+  { path: 'new-report', component: NewReport },
   { path: '**', component: NotFound },
 ];
