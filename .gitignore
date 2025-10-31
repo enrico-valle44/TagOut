@@ -1,0 +1,126 @@
+############################################
+#     FRONTEND: Angular / Node (VS Code)   #
+############################################
+
+# Node modules & build output
+node_modules/
+dist/
+build/
+.tmp/
+coverage/
+.angular/
+.vite/
+.next/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.code-workspace
+
+# Environment files (contengono segreti!)
+.env
+.env.local
+.env.development
+.env.production
+
+# Cache
+*.tsbuildinfo
+.eslintcache
+*.cache
+.cache/
+.parcel-cache/
+.pnp*
+.pnp.js
+
+############################################
+#     BACKEND: C# / .NET (Visual Studio)   #
+############################################
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+out/
+publish/
+artifacts/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+# User-specific / IDE settings
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+.vs/
+.idea/
+*.Rider/
+*.DotSettings
+*.ncrunch*
+.nCrunch_*
+_ReSharper*/
+
+# Logs and temp
+*.log
+*.tlog
+*.tmp
+*.temp
+*.dbmdl
+
+# Coverage / test
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+# ASP.NET Core config locali
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+secrets.json
+
+# Database files (se usi SQLite)
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+############################################
+#     COMMON / SYSTEM FILES                #
+############################################
+
+# OS / misc
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Package managers
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Backup / others
+*.bak
+*.old
+*.orig
+*.rej
+*.swp
+*.swo
