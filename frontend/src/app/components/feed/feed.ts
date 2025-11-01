@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
 import { DataService } from './../../services/data-service/data-service';
 import { LocationService } from '../../services/location-service/location-service';
 import { ReportCard } from '../report-card/report-card';
 import { Report } from '../../model/report';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-feed',

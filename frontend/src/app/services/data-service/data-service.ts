@@ -31,4 +31,8 @@ export class DataService {
       .then((resp) => resp.json())
       .catch((err) => console.error(err));
   }
+
+  postReport(report: Report) {
+    console.log(report);
+  }
 }

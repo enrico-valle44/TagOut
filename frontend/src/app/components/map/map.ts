@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../services/data-service/data-service';
 import * as L from 'leaflet';
-import { Feature } from '../../model/feature';
 import { GeoJsonObject } from 'geojson';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -9,7 +8,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-map',
-  imports: [MatButtonModule, MatDividerModule, MatIconModule,RouterLink],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, RouterLink],
   templateUrl: './map.html',
   styleUrl: './map.scss',
 })

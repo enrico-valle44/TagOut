@@ -1,0 +1,24 @@
+.top-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffff;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 64px;
+  z-index: 1000;
+}
+
+.top-toolbar .logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.top-toolbar .logo img {
+  height: 80%;     /* si adatta alla toolbar */
+  width: auto;     /* mantiene le proporzioni */
+  object-fit: contain; /* evita deformazioni */
+}

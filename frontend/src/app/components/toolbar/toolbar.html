@@ -1,10 +1,13 @@
-<mat-toolbar>
-  <span>My App</span>
-  <span class="spacer"></span>
-  <button routerLink="/map" matIconButton>
+<mat-toolbar class="bottom-toolbar">
+  <button mat-icon-button routerLink="/map" class="logo-buttons">
     <mat-icon>map</mat-icon>
   </button>
-  <button routerLink="/feed" matIconButton>
+  
+  <button mat-icon-button routerLink="/feed" class="logo-buttons">
     <mat-icon>dynamic_feed</mat-icon>
+  </button>
+
+  <button mat-icon-button routerLink="/profile" class="logo-buttons">
+    <mat-icon>person</mat-icon>
   </button>
 </mat-toolbar>
