@@ -1,4 +1,29 @@
+.report-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  justify-content: center;
+  padding: 100px;
+
+}
+
+
 .report-card {
-  max-width:100%;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  background: #fff ;
+}
+
+img[mat-card-image]{
+  width: 100%;
+  aspect-ratio: 1 /1;
+  object-fit: cover;
+  
+}
+
+@media (min-width: px) {
+  .report-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 
