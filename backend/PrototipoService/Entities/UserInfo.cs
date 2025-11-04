@@ -13,5 +13,7 @@ public class UserInfo
     public string Gender { get; set; }
     public DateTime DOB { get; set; }
 
+    public virtual ICollection<Report> Reports { get; set; }
+
 
 }

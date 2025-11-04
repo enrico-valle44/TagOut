@@ -18,7 +18,7 @@ public class ImageEntityTypeConfiguration : IEntityTypeConfiguration<Image>
 
         builder.Property(i => i.Path).HasColumnName("path").IsRequired();
 
-        builder.Property(u => u.ReportId).HasColumnName("report_id");
+        builder.Property(i => i.ReportId).HasColumnName("report_id");
 
         builder.ToTable("image", "cust"); //nome tabella, nome schema, serve per mapparlo 
     }
