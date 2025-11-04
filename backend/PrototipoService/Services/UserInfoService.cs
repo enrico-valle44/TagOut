@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PrototipoService.DTO;
 using PrototipoService.Entities;
 using PrototipoService.Model;
 using PrototipoService.Services.Interface;

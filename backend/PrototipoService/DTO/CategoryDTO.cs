@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrototipoService.Model;
+namespace PrototipoService.DTO;
 
 public class CategoryDTO
 {

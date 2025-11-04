@@ -1,4 +1,5 @@
-﻿using PrototipoService.Model;
+﻿using PrototipoService.DTO;
+using PrototipoService.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

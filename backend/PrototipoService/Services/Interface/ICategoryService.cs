@@ -1,4 +1,5 @@
-﻿using PrototipoService.Entities;
+﻿using PrototipoService.DTO;
+using PrototipoService.Entities;
 using PrototipoService.Model;
 using System;
 using System.Collections.Generic;
