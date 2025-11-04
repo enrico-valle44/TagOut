@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace PrototipoService.Configurations;
 
-public class CategoryEntityTypeConfigurations : IEntityTypeConfiguration<Category>
+public class CategoryEntityTypeConfiguration : IEntityTypeConfiguration<Category>
 {
 
     public void Configure(EntityTypeBuilder<Category> builder)
     {
-        builder.ToTable("category", "cust");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id)
                 .HasColumnName("id")
                 .ValueGeneratedOnAdd();
         builder.Property(x => x.Name).HasColumnName("name").IsRequired();
         builder.Property(x => x.Description).HasColumnName("description");
+
+        builder.ToTable("category", "cust");
     }
 }

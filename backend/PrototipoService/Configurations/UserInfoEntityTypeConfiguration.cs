@@ -9,7 +9,7 @@ public class UserInfoEntityTypeConfiguration : IEntityTypeConfiguration<UserInfo
     public void Configure(EntityTypeBuilder<UserInfo> builder)
     {
         builder.HasKey(u => u.Id); //chiave primaria
-        builder.Property(u => u.Id).HasColumnName("id");
+        builder.Property(u => u.Id).HasColumnName("id").ValueGeneratedOnAdd();
 
         builder.Property(u => u.Username).HasColumnName("username");
 

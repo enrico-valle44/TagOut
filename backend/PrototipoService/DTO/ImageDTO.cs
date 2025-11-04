@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PrototipoService.DTO;
 
-public class CategoryDTO
+public class ImageDTO
 {
-    public required string Name { get; set; }
-    public string ? Description { get; set; }
+    public required string Path { get; set; }
+
 }
+    

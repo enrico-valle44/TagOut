@@ -1,5 +1,4 @@
-﻿
-namespace PrototipoService.Model;
+﻿namespace PrototipoService.DTO;
 
 public class CategoryUpdateDTO
 {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PrototipoService.DTO;
 using PrototipoService.Model;
 using PrototipoService.Services;
 using PrototipoService.Services.Interface;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PrototipoService.Model;
+using PrototipoService.DTO;
 using PrototipoService.Services.Interface;
 
 namespace PrototipoApi.Controllers;
