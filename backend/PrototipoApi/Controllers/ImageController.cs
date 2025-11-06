@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace PrototipoApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class ImageController : ControllerBase
 {
     private readonly IImageService _service;

@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace PrototipoApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class UserInfoController : ControllerBase
 {
     private readonly IUserInfoService _service;
@@ -18,7 +18,7 @@ public class UserInfoController : ControllerBase
     }
 
 
-    [HttpPost] //specifica la route, il verbo post
+    [HttpPost("add")] //specifica la route, il verbo post
     public async Task<IActionResult> Add([FromBody] UserInfoDTO addEntity) {
 
 

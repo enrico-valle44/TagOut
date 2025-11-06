@@ -7,7 +7,7 @@ using PrototipoService.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args); //creiamo l app con il builder
 
-builder.Services.AddControllers(); //builder.Services contiene tutte le dipendenzze dell'applicativo, usiamo anche quelle di microsoft
+builder.Services.AddControllers(); //builder.Services contiene tutte le dipendenze dell'applicativo, usiamo anche quelle di microsoft
 // Learn more https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DatabaseContext>(options =>
     {
-        options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //serve per specificare che non vogliamo un contesto in cui vengano segnate le modifiche
+        //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //serve per specificare che non vogliamo un contesto in cui vengano segnate le modifiche
         options.UseNpgsql(connectionString); //visto che vogliamo implementare l'ORM con EF... stiamo usando un approccio DbFirst... quando useremo le migrazioni ci svincoleremo da questa robaccia
                                              //bel commento ;-)
     }
@@ -24,7 +24,8 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 //abbiamo bisogno dei service, che viene distrutto alla fine di ogni utilizzo
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserInfoService, UserInfoService>(); 
-builder.Services.AddScoped<IImageService, ImageService>(); 
+builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
 //test brutale di connessione
 try

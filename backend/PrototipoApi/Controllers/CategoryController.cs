@@ -17,7 +17,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("all")]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAllCategories()
     {
         _logger.LogInformation("Richiesta GET /category/all");
         var result = await _serviceCategory.GetAllCategories();
@@ -26,16 +26,25 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] int id)
+    public async Task<IActionResult> GetCategoryById([FromRoute] int id)
     {
         _logger.LogInformation($"Richiesta GET /category/{id}");
-        var result = await _serviceCategory.GetCategoryById(id);
-        if (result == null)
+
+        try
         {
-            _logger.LogWarning($"Categoria con id={id} non trovata");
-            return NotFound();
+            var result = await _serviceCategory.GetCategoryById(id);
+            return Ok(result);
         }
-        return Ok(result);
+        catch (KeyNotFoundException ex)
+        {
+            _logger.LogWarning(ex, $"Categoria con id={id} non trovata");
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Errore imprevisto durante il recupero della categoria con id={id}");
+            return StatusCode(500, "Errore interno del server");
+        }
     }
 
     [HttpPost("add")]
@@ -56,9 +65,10 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPatch("update/{id}")]
-    public async Task<IActionResult> UpdateCategory(int id, [FromBody] CategoryUpdateDTO categoryDTO)
+    public async Task<IActionResult> UpdateCategory([FromRoute] int id, [FromBody] CategoryUpdateDTO categoryDTO)
     {
         _logger.LogInformation($"Richiesta PATCH /category/update/{id}");
+
         try
         {
             await _serviceCategory.UpdateCategory(id, categoryDTO);
@@ -88,7 +98,12 @@ public class CategoryController : ControllerBase
         catch (KeyNotFoundException ex)
         {
             _logger.LogWarning(ex, $"Tentativo di eliminare categoria inesistente con id={id}");
-            return NotFound();
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Errore imprevisto durante l'eliminazione della categoria con id={id}");
+            return StatusCode(500, "Errore interno del server");
         }
     }
 }

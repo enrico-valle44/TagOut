@@ -3,14 +3,7 @@ using PrototipoService.DTO;
 using PrototipoService.Entities;
 using PrototipoService.Model;
 using PrototipoService.Services.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 
 namespace PrototipoService.Services;
 
@@ -23,9 +16,6 @@ public class UserInfoService : IUserInfoService
     {
         _context = context;
     }
-
-
-
 
     public async Task<int> AddUserInfo(UserInfoDTO AddEntity)
     {
@@ -40,12 +30,9 @@ public class UserInfoService : IUserInfoService
         {
             return -1;
         }
-        Random random = new Random();
-        int randomId = random.Next(1, 1000); // ID casuale 
-
+         
         var entityToAdd = new UserInfo
         {
-            Id = randomId,
             Username = AddEntity.Username,
             Gender = AddEntity.Gender,
             DOB = AddEntity.DOB,

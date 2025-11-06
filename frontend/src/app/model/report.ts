@@ -9,9 +9,3 @@ export interface Report {
   lng: number;
   distance?: number;
 }
-
-//enum Category {
-// Sport = 'Sport',
-//  Politica = 'Politica',
-//  Cultura = 'Cultura',
-//}
