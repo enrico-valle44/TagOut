@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { NgIf } from '@angular/common';
+import { NgFor } from '@angular/common';
+
 @Component({
   selector: 'app-detail',
   imports: [
@@ -16,6 +19,10 @@ import { MatChipsModule } from '@angular/material/chips';
     CommonModule,
     MatIconModule,
     MatChipsModule,
+    NgIf,
+    NgFor,
+    
+    
   ],
   templateUrl: './detail.html',
   styleUrl: './detail.scss',
@@ -50,5 +57,13 @@ export class Detail {
     const imgs = this.report()?.images;
     if (!imgs) return;
     this.currentImg.update((value) => (value - 1 + imgs.length) % imgs.length);
+  }
+
+  focusonMap() {
+    const lat = this.report()!.lat;
+    const lng = this.report()!.lng;
+    window.open(
+      '/map', '_blank'
+    );
   }
 }

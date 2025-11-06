@@ -1,52 +1,53 @@
-<form class="report-form" [formGroup]="reportForm" (ngSubmit)="postReport()">
-    <mat-form-field class="input-full-width">
-        <mat-label>Titolo</mat-label>
-        <input matInput type="text" formControlName="title" placeholder="Report Title" /> 
-    </mat-form-field>
 
-    <mat-form-field class="input-full-width">
-        <mat-label>Descrizione</mat-label>    
-        <textarea matInput formControlName="description" placeholder="Report Description"></textarea>
-    </mat-form-field>
-
-    <div class="cat-container" formArrayName="categories">
-        @for (category of categories.controls; track category; let i = $index) {
-            <div class="category-item">
-                <mat-form-field>
-                    <mat-label>Categoria</mat-label>
-                    <mat-select>
-                        @for (name of categoryNames; track $index) {
-                            <mat-option value="{{name}}">{{name}}</mat-option>
-                        }
-                    </mat-select>
-                </mat-form-field>
-            </div>
-                
-                
-            <button matButton="tonal" (click)="removeCategoryInput(i)"><mat-icon>delete</mat-icon></button>
-        }
-        <button matButton="tonal" (click)="addCategoryInput()"><mat-icon>add</mat-icon></button>
-    </div>
-
-    <button matButton="tonal" (click)="fileInput.click()">
-        <mat-icon>photo_camera</mat-icon>
-        Scatta o scegli foto
-    </button>
-
-    <input
-    type="file"
-    accept="image/*"
-    capture="environment"
-    #fileInput
-    hidden
-    (change)="onImageSelected($event)"
-    />
-
-    <div class="gallery">
-        @for(image of images; track $index){
-            <img src="{{image}}" alt="">
-        }
-    </div>
-        
-    <button matButton="tonal" [disabled]="!reportForm.valid" type="submit">Invia</button>
-</form>
+    <form class="report-form" [formGroup]="reportForm" (ngSubmit)="postReport()">
+        <mat-form-field class="input-full-width">
+            <mat-label>Titolo</mat-label>
+            <input matInput type="text" formControlName="title" placeholder="Report Title" /> 
+        </mat-form-field>
+    
+        <mat-form-field class="input-full-width">
+            <mat-label>Descrizione</mat-label>    
+            <textarea matInput formControlName="description" placeholder="Report Description"></textarea>
+        </mat-form-field>
+    
+        <div class="cat-container" formArrayName="categories">
+            @for (category of categories.controls; track category; let i = $index) {
+                <div class="category-item">
+                    <mat-form-field>
+                        <mat-label>Categoria</mat-label>
+                        <mat-select>
+                            @for (name of categoryNames; track $index) {
+                                <mat-option value="{{name}}">{{name}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                    
+                    
+                <button matButton="tonal" (click)="removeCategoryInput(i)"><mat-icon>delete</mat-icon></button>
+            }
+            <button matButton="tonal" (click)="addCategoryInput()"><mat-icon>add</mat-icon></button>
+        </div>
+    
+        <button matButton="tonal" (click)="fileInput.click()">
+            <mat-icon>photo_camera</mat-icon>
+            Scatta o scegli foto
+        </button>
+    
+        <input
+        type="file"
+        accept="image/*"
+        capture="environment"
+        #fileInput
+        hidden
+        (change)="onImageSelected($event)"
+        />
+    
+        <div class="gallery">
+            @for(image of images; track $index){
+                <img src="{{image}}" alt="">
+            }
+        </div>
+            
+        <button matButton="tonal" [disabled]="!reportForm.valid" type="submit">Invia</button>
+    </form>
