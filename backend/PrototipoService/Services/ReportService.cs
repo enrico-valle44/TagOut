@@ -19,7 +19,7 @@ public class ReportService : IReportService
     {
         var r = await _context.Reports.FindAsync(id);
         if (r == null)
-            throw new KeyNotFoundException($"Report con id {id} non trovato");
+            throw new KeyNotFoundException($"Report con idUser {id} non trovato");
 
         return new ReportViewModel
         {
@@ -49,23 +49,36 @@ public class ReportService : IReportService
                 })
                 .ToListAsync();
     }
-    public async Task AddReport(ReportDTO reportDTO)
+    public async Task AddReport(int idUser, ReportDTO reportDTO)
     {
-        var user = await _context.UserInfo.FindAsync(reportDTO.IdUser);
+        var user = await _context.UserInfo.FindAsync(idUser);
+        Console.WriteLine(idUser);
         if (user == null)
-            throw new KeyNotFoundException($"Utente con id {reportDTO.IdUser} non trovato");
+            throw new KeyNotFoundException($"Utente con idUser {idUser} non trovato");
+
+        var categories = await _context.Categories
+         .Where(c => reportDTO.Categories.Contains(c.Name))
+         .ToListAsync();
+
         var report = new Report
         {
             Title = reportDTO.Title,
             Description = reportDTO.Description,
-            IdUser = reportDTO.IdUser,
+            IdUser = idUser,
             DateReport = reportDTO.Date,
             Longitude = reportDTO.Lng,
-            Latitude = reportDTO.Lat
+            Latitude = reportDTO.Lat,
+            Categories = categories,
+            Images = reportDTO.Images?.Select(img => new Image
+            {
+                Path = img
+            }).ToList() ?? new List<Image>()
         };
 
-        await _context.Reports.AddAsync(report);
+        _context.Reports.Add(report);
         await _context.SaveChangesAsync();
+
+       
     }
     public async Task UpdateReport(int id, ReportUpdateDTO reportDTO)
     {
@@ -75,7 +88,7 @@ public class ReportService : IReportService
         .FirstOrDefaultAsync(r => r.Id == id);
 
         if (report == null)
-            throw new KeyNotFoundException($"Report con id {id} non trovato");
+            throw new KeyNotFoundException($"Report con idUser {id} non trovato");
 
         if (!string.IsNullOrWhiteSpace(reportDTO.Title))
             report.Title = reportDTO.Title;
@@ -124,7 +137,7 @@ public class ReportService : IReportService
 
         if (r == null)
         {
-            throw new KeyNotFoundException($"Report con id {id} non trovato");
+            throw new KeyNotFoundException($"Report con idUser {id} non trovato");
         }
 
         _context.Reports.Remove(r);

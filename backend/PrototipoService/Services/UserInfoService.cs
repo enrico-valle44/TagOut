@@ -61,6 +61,26 @@ public class UserInfoService : IUserInfoService
         return entity.Id;
     }
 
+    public async Task<UserInfoViewModel> GetByUsername(string username)
+    {
+        UserInfo? entity = await _context.UserInfo.FirstOrDefaultAsync(p => p.Username.Equals(username));
+
+        UserInfoViewModel entityViewModel = null;
+        if (entity != null)
+        {
+            entityViewModel = new UserInfoViewModel
+            {
+                Id = entity.Id,
+                Username = entity.Username,
+                Gender = entity.Gender,
+                DOB = entity.DOB,
+
+            };
+        }
+
+        return entityViewModel;
+    }
+
     public async Task<UserInfoViewModel> GetById(int id)
     {
         UserInfo? entity = await _context.UserInfo.FindAsync(id);

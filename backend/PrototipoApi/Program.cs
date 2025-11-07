@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using PrototipoApi.Controllers;
 using PrototipoService;
@@ -43,13 +43,13 @@ catch (Exception ex)
 //buildiamo l'app
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline. usiamo swagger solo se siamo in modalita sviluppo
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.MapControllers(); //va a mappare 
 

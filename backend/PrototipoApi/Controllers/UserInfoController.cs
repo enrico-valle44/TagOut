@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PrototipoService.DTO;
 using PrototipoService.Model;
-using PrototipoService.Services;
 using PrototipoService.Services.Interface;
-using System.Security.Cryptography.X509Certificates;
 
 namespace PrototipoApi.Controllers;
 
@@ -55,6 +53,17 @@ public class UserInfoController : ControllerBase
         return Ok(result); //status code 201 creared con l'id della risorsa creata
     }
 
+    [HttpGet("getId/{username}")]
+    public async Task<IActionResult> GetByUsername([FromRoute] string username)
+    {
+       UserInfoViewModel result = await _service.GetByUsername(username);
+        if (result == null)
+        {
+            return NoContent();
+        }
+
+        return Ok(result.Id);
+    }
 
     [HttpPatch("{id}")] //aggiorniamo solo dei pezzi dell'oggetto
     public async Task<IActionResult> UpdatePatch([FromRoute] int id, [FromBody] UserInfoUpdateDTO updateEntity)

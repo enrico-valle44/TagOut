@@ -27,7 +27,7 @@ export class DataService {
   }
 
   getCategories(): Promise<string[]> {
-    return fetch('http://localhost:5089/Category/all')
+    return fetch('./assets/categories.json')
       .then((resp) => resp.json())
       .catch((err) => console.error(err));
   }

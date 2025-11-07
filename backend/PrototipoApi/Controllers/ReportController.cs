@@ -49,14 +49,14 @@ public class ReportController : ControllerBase
         }
     }
 
-    [HttpPost("add")]
-    public async Task<IActionResult> CreateReport([FromBody] ReportDTO reportDTO)
+    [HttpPost("add/{idUser}")]
+    public async Task<IActionResult> CreateReport([FromRoute] int idUser, [FromBody] ReportDTO reportDTO)
     {
         _logger.LogInformation("Richiesta POST /report/add");
 
         try
         {
-            await _serviceReport.AddReport(reportDTO);
+            await _serviceReport.AddReport(idUser,reportDTO);
             return Ok();
         }
         catch (Exception ex)

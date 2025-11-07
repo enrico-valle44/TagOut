@@ -13,6 +13,7 @@ public interface IUserInfoService
     //firme dei metodi
     Task<int> AddUserInfo(UserInfoDTO AddEntity);
     Task<UserInfoViewModel> GetById(int Id);
+    Task<UserInfoViewModel> GetByUsername(string username);
     Task<List<UserInfoViewModel>> GetByFilter(UserInfoFilter filter);
     Task<int> UpdatePatch(UserInfoUpdateDTO updateEntity, int id); 
     Task<int> Delete(int id);

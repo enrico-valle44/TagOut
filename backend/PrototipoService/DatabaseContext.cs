@@ -19,12 +19,9 @@ public class DatabaseContext : DbContext //dbcontext creato da microsoft... pacc
 
     //specificiamo le nostre tabelle
     public DbSet<Category> Categories { get; set; }
-
     public DbSet<UserInfo> UserInfo { get; set; }
     public DbSet<Image> Images { get; set; }
     public DbSet<Report> Reports{ get; set; }
-
-    
     //metodo che gestisce il mapping , sovrascrive il metodo della classe base 
     //tira fuori gli assembly che ci servono per il mapping ( reflection) 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
