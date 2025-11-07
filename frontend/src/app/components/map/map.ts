@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-map',
   imports: [MatButtonModule, MatDividerModule, MatIconModule, RouterLink],
@@ -17,6 +18,8 @@ export class Map {
 
   // private dataServ = inject(DataService);
   constructor(private dataServ: DataService) {}
+
+  
 
   ngAfterViewInit() {
     this.setupMap();
@@ -51,6 +54,15 @@ export class Map {
   }
 
   myPointToLayer(point: any, latLng: L.LatLng) {
+    
+    const  collorCategoryMap = {
+      selective : 'red',
+      Avvistamenti : 'orange',
+    }
+    const categoryKey = String(point?.properties?.category?.[0] || '');
+    const fillColor = collorCategoryMap[categoryKey as keyof typeof collorCategoryMap] || 'blue';
+    
+    
     const geojsonMarkerOptions = {
       radius: 8,
       fillColor: '#ff7800',
@@ -59,7 +71,8 @@ export class Map {
       opacity: 1,
       fillOpacity: 0.8,
     };
-    return L.circleMarker(latLng, geojsonMarkerOptions);
+
+    return L.circleMarker(latLng, geojsonMarkerOptions); // l.icon to costumize 
   }
 
   myOnEachFeature(point: any, layer: L.Layer) {
@@ -159,4 +172,8 @@ function createPopupContent(properties: any): string {
   container.appendChild(titleDiv);
 
   return container.outerHTML;
+
+
+
+
 }
