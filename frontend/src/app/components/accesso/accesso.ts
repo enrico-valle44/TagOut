@@ -8,10 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Utente } from '../../model/utente';
-import { MatIcon } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
 @Component({
   selector: 'app-accesso',
   imports: [
@@ -22,7 +22,7 @@ import { MatIcon } from '@angular/material/icon';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatOption, MatIcon,
+    MatSelectModule,
   ],
   templateUrl: './accesso.html',
   styleUrl: './accesso.scss',
@@ -41,7 +41,7 @@ export class Accesso {
   });
 
   salva(): void {
-  this.accessoServ.salvaUtente(this.accessoForm.value as Utente);
-  this.router.navigateByUrl('/');
-}
+    this.accessoServ.salvaUtente(this.accessoForm.value as Utente);
+    this.router.navigateByUrl('/feed');
+  }
 }

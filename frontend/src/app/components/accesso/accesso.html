@@ -1,54 +1,56 @@
-<form [formGroup]="accessoForm" (ngSubmit)="salva()">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Benvenuto in TagOut</mat-card-title>
-            <mat-card-subtitle>Inserisci i tuoi dati per continuare</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="custom-card-content">
-            <mat-form-field appearance="fill" class="largo-100">
-                <mat-label>Nome utente</mat-label>
-                <input matInput formControlName="userName" required placeholder="inserisci il tuo nome utente">
-                <mat-error>Obbligatorio</mat-error>
-            </mat-form-field>
-            
-            <mat-form-field appearance="fill" class="largo-100">
-                <mat-label>Data di nascita</mat-label>
-                <input matInput formControlName="dataNascita" type="date" required>
-                <mat-error>Obbligatorio</mat-error>
-            </mat-form-field>
-            
-            <mat-form-field appearance="fill" class="largo-100">
-                <mat-label>Genere</mat-label>
-                <mat-select formControlName="gender" required placeholder="Seleziona">
-                    <mat-option value="M">
-                        <div class="gender-option">
-                            <mat-icon>male</mat-icon>
-                            <span>Maschile</span>
-                        </div>
-                    </mat-option>
-                    <mat-option value="F">
-                        <div class="gender-option">
-                            <mat-icon>female</mat-icon>
-                            <span>Femminile</span>
-                        </div>
-                    </mat-option>
-                    <mat-option value="A">
-                        <div class="gender-option">
-                            <mat-icon>person</mat-icon>
-                            <span>Altro</span>
-                        </div>
-                    </mat-option>
-                </mat-select>
-                <mat-error>Obbligatorio</mat-error>
-            </mat-form-field>
-            
-            <button mat-raised-button 
-                    color="primary" 
-                    type="submit"
-                    class="submit-button"
-                    [disabled]="!accessoForm.valid">
-                Continua
-            </button>
-        </mat-card-content>
-    </mat-card>
+<form [formGroup]="accessoForm" (ngSubmit)="salva()" class="access-form">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Benvenuto in TagOut</mat-card-title>
+      <mat-card-subtitle>Inserisci i tuoi dati per continuare</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="custom-card-content">
+      
+            <mat-form-field appearance="fill" class="my-form-field largo-100">
+        <mat-label>Nome utente</mat-label>
+        <input matInput 
+                formControlName="username" 
+                placeholder="Inserisci il tuo nome utente" 
+                required>
+        <mat-error *ngIf="accessoForm.get('username')?.errors?.['required']">
+            Obbligatorio
+        </mat-error>
+        <mat-error *ngIf="accessoForm.get('username')?.errors?.['minlength']">
+            Minimo 3 caratteri
+        </mat-error>
+        </mat-form-field>
+
+      <mat-form-field appearance="fill" class="my-form-field largo-100">
+        <mat-label>Data di nascita</mat-label>
+        <input matInput 
+               formControlName="dataNascita" 
+               type="date" 
+               required>
+        <mat-error>Obbligatorio</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="my-form-field largo-100">
+        <mat-label>Genere</mat-label>
+        <mat-select formControlName="gender" required class="my-select">
+          <mat-option value="" disabled class="placeholder-option" selected>
+            Seleziona un genere
+          </mat-option>
+          <mat-option value="M">Maschile</mat-option>
+          <mat-option value="F">Femminile</mat-option>
+          <mat-option value="A">Altro</mat-option>
+        </mat-select>
+        <mat-error>Campo obbligatorio</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button 
+              color="primary" 
+              type="submit" 
+              class="submit-button" 
+              [disabled]="!accessoForm.valid">
+        Continua
+      </button>
+
+    </mat-card-content>
+  </mat-card>
 </form>
