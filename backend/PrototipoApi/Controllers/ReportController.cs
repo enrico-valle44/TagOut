@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PrototipoService.DTO;
+using PrototipoService.Services;
 using PrototipoService.Services.Interface;
 
 namespace PrototipoApi.Controllers;
@@ -48,6 +49,37 @@ public class ReportController : ControllerBase
             return StatusCode(500, "Errore interno del server");
         }
     }
+
+    [HttpGet("user/{userId}")]
+    public async Task<IActionResult> GetReportsByUser([FromRoute] int userId)
+    {
+        _logger.LogInformation($"Richiesta GET /report/user/{userId}");
+
+        try
+        {
+            var reports = await _serviceReport.GetAllReportsByUserId(userId);
+
+            if (reports == null || !reports.Any())
+            {
+                _logger.LogWarning($"Nessun report trovato per l'utente con id={userId}");
+                return NotFound($"Nessun report trovato per l'utente con id={userId}");
+            }
+
+            return Ok(reports);
+        }
+        catch (KeyNotFoundException ex)
+        {
+            _logger.LogWarning(ex, $"Utente con id={userId} non trovato");
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Errore imprevisto durante il recupero dei report per userId={userId}");
+            return StatusCode(500, "Errore interno del server");
+        }
+    }
+
+
 
     [HttpPost("add/{idUser}")]
     public async Task<IActionResult> CreateReport([FromRoute] int idUser, [FromBody] ReportDTO reportDTO)

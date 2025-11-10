@@ -19,7 +19,7 @@ public class ReportService : IReportService
     {
         var r = await _context.Reports.FindAsync(id);
         if (r == null)
-            throw new KeyNotFoundException($"Report con idUser {id} non trovato");
+            throw new KeyNotFoundException($"Report con id {id} non trovato");
 
         return new ReportViewModel
         {
@@ -28,6 +28,8 @@ public class ReportService : IReportService
             Title = r.Title,
             Description = r.Description,
             DateReport = r.DateReport,
+            Categories = r.Categories.Select(c => c.Name).ToList(),
+            Images = r.Images.Select(i => i.Path).ToList(),
             Longitude = r.Longitude,
             Latitude = r.Latitude,
 
@@ -36,19 +38,47 @@ public class ReportService : IReportService
     public async Task<List<ReportViewModel>> GetAllReports()
     {
         return await _context.Reports
-                .Select(c => new ReportViewModel
-                {
-                    Id = c.Id,
-                    IdUser = c.IdUser,
-                    Title = c.Title,
-                    Description = c.Description,
-                    DateReport = c.DateReport,
-                    Longitude = c.Longitude,
-                    Latitude = c.Latitude,
+            .Select(r => new ReportViewModel
+            {
+                Id = r.Id,
+                IdUser = r.IdUser,
+                Title = r.Title,
+                Description = r.Description,
+                DateReport = r.DateReport,
+                Categories = r.Categories.Select(c => c.Name).ToList(),
+                Images = r.Images.Select(i => i.Path).ToList(),
+                Longitude = r.Longitude,
+                Latitude = r.Latitude,
 
-                })
-                .ToListAsync();
+            })
+            .ToListAsync();
     }
+    public async Task<List<ReportViewModel>> GetAllReportsByUserId(int userId)
+    {
+        var reports = await _context.Reports
+            .AsNoTracking()
+            .Where(r => r.IdUser == userId)
+            .Include(r => r.User)         
+            .Include(r => r.Images)      
+            .Include(r => r.Categories)   
+            .OrderByDescending(r => r.DateReport)
+            .Select(r => new ReportViewModel
+            {
+                Id = r.Id,
+                IdUser = r.IdUser, //teniamolo se no lo restituisce sempre = 0 ... poi vediamo
+                Title = r.Title,
+                Description = r.Description,
+                DateReport = r.DateReport,
+                Categories = r.Categories.Select(c => c.Name).ToList(),
+                Images= r.Images.Select(i => i.Path).ToList(),
+                Longitude = r.Longitude,
+                Latitude = r.Latitude,
+            })
+            .ToListAsync();
+
+        return reports;
+    }
+
     public async Task AddReport(int idUser, ReportDTO reportDTO)
     {
         var user = await _context.UserInfo.FindAsync(idUser);
@@ -88,7 +118,7 @@ public class ReportService : IReportService
         .FirstOrDefaultAsync(r => r.Id == id);
 
         if (report == null)
-            throw new KeyNotFoundException($"Report con idUser {id} non trovato");
+            throw new KeyNotFoundException($"Report con id {id} non trovato");
 
         if (!string.IsNullOrWhiteSpace(reportDTO.Title))
             report.Title = reportDTO.Title;
