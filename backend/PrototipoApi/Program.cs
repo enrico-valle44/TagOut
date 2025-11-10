@@ -18,8 +18,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
         //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //serve per specificare che non vogliamo un contesto in cui vengano segnate le modifiche
         options.UseNpgsql(connectionString); //visto che vogliamo implementare l'ORM con EF... stiamo usando un approccio DbFirst... quando useremo le migrazioni ci svincoleremo da questa robaccia
                                              //bel commento ;-)
-    }
-    );
+    });
 
 //abbiamo bisogno dei service, che viene distrutto alla fine di ogni utilizzo
 builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -28,17 +27,17 @@ builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 
 //test brutale di connessione
-try
-{
-    using var conn = new NpgsqlConnection(connectionString);
-    conn.Open();
-    Console.WriteLine("Connessione ok");
-}
-catch (Exception ex)
-{
-    Console.WriteLine("Errore connessione: " + ex.Message);
+//try
+//{
+//    using var conn = new NpgsqlConnection(connectionString);
+//    conn.Open();
+//    Console.WriteLine("Connessione ok");
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine("Errore connessione: " + ex.Message);
        
-}
+//}
 
 //buildiamo l'app
 var app = builder.Build();
