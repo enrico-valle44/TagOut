@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { Utente } from '../../model/utente';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgIf } from '@angular/common';
+
 @Component({
   selector: 'app-accesso',
   imports: [
@@ -22,7 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatSelectModule,
+    MatSelectModule,NgIf
   ],
   templateUrl: './accesso.html',
   styleUrl: './accesso.scss',
