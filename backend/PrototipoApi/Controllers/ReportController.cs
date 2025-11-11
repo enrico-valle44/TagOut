@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PrototipoService.DTO;
-using PrototipoService.Services;
 using PrototipoService.Services.Interface;
 
 namespace PrototipoApi.Controllers;
@@ -12,11 +11,13 @@ public class ReportController : ControllerBase
 {
     private readonly IReportService _serviceReport;
     private readonly ILogger<ReportController> _logger;
+    private readonly IGeoService _geoService;
 
-    public ReportController(IReportService serviceReport, ILogger<ReportController> logger)
+    public ReportController(IReportService serviceReport, ILogger<ReportController> logger, IGeoService geoService)
     {
         _serviceReport = serviceReport;
         _logger = logger;
+        _geoService = geoService;
     }
 
     [HttpGet("all")]
@@ -79,7 +80,12 @@ public class ReportController : ControllerBase
         }
     }
 
-
+    [HttpGet("geojson")]
+    public IActionResult GetGeoJson()
+    {
+        var geoJson = _geoService.GetReportsGeoJson();
+        return Content(geoJson, "application/json");
+    }
 
     [HttpPost("add/{idUser}")]
     public async Task<IActionResult> CreateReport([FromRoute] int idUser, [FromBody] ReportDTO reportDTO)

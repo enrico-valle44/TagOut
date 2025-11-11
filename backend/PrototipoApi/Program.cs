@@ -25,6 +25,9 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserInfoService, UserInfoService>(); 
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IGeoService, GeoService>();
+builder.Services.AddControllers()
+       .AddNewtonsoftJson(); // necessario per GeoJSON.Net
 
 //test brutale di connessione
 //try
@@ -36,7 +39,7 @@ builder.Services.AddScoped<IReportService, ReportService>();
 //catch (Exception ex)
 //{
 //    Console.WriteLine("Errore connessione: " + ex.Message);
-       
+
 //}
 
 //buildiamo l'app
