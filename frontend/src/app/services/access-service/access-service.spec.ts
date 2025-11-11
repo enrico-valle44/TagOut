@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Accesso } from './accesso-service';
+import { AccessService } from './access-service';
 
-describe('Accesso', () => {
-  let service: Accesso;
+describe('AccessService', () => {
+  let service: AccessService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Accesso);
+    service = TestBed.inject(AccessService);
   });
 
   it('should be created', () => {

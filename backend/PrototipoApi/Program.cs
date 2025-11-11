@@ -29,22 +29,26 @@ builder.Services.AddScoped<IGeoService, GeoService>();
 builder.Services.AddControllers()
        .AddNewtonsoftJson(); // necessario per GeoJSON.Net
 
-//test brutale di connessione
-//try
-//{
-//    using var conn = new NpgsqlConnection(connectionString);
-//    conn.Open();
-//    Console.WriteLine("Connessione ok");
-//}
-//catch (Exception ex)
-//{
-//    Console.WriteLine("Errore connessione: " + ex.Message);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-//}
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200") // il tuo frontend
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 
 //buildiamo l'app
 var app = builder.Build();
+// 2. Usa CORS
+app.UseCors(MyAllowSpecificOrigins);
 
+app.UseAuthorization();
 
 // Configure the HTTP request pipeline. usiamo swagger solo se siamo in modalita sviluppo
 if (app.Environment.IsDevelopment())

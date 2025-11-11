@@ -6,21 +6,26 @@ import { User } from './components/user/user';
 import { NotFound } from './components/not-found/not-found';
 import { NewReport } from './components/new-report/new-report';
 import { inject } from '@angular/core';
-import { Accesso as AccessoService } from './services/access-service/accesso-service';
+import { AccessService } from './services/access-service/access-service';
+import { Register } from './components/register/register';
+
 export const routes: Routes = [
-   { path: '', redirectTo: '/benvenuto', pathMatch: 'full' }, 
-
-  {
-    path: 'map',
-    component: Map,
+    {
+    path: '',
+    pathMatch: 'full',
     canActivate: [() => {
-      const accessoServ = inject(AccessoService);
+      const accessoServ = inject(AccessService);
       const router = inject(Router);
-      return accessoServ.haUtente() || router.createUrlTree(['/benvenuto']);
-    }],
-  },
 
-  { path: 'benvenuto', loadComponent: () => import('./components/accesso/accesso').then(c => c.Accesso) },
+      if (accessoServ.haUtente()) {
+        return router.createUrlTree(['/map']);
+      } else {
+        return router.createUrlTree(['/register']);
+      }
+    }],
+    component: Register 
+  },
+  { path: 'register', component: Register },
   { path: 'map', component: Map },
   { path: 'feed', component: Feed },
   { path: 'detail/:id', component: Detail },

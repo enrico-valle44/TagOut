@@ -1,21 +1,19 @@
+import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Accesso as AccessoService } from '../../services/access-service/accesso-service';
-import { Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatButtonModule } from '@angular/material/button';
-import { Utente } from '../../model/utente';
 import { MatSelectModule } from '@angular/material/select';
-import { MatNativeDateModule } from '@angular/material/core';
-import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
+import { Utente } from '../../model/utente';
+import { AccessService } from '../../services/access-service/access-service';
 
 @Component({
-  selector: 'app-accesso',
+  selector: 'app-register',
   imports: [
     ReactiveFormsModule,
     MatCardModule,
@@ -24,14 +22,16 @@ import { NgIf } from '@angular/common';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatSelectModule,NgIf
+    MatSelectModule,
+    NgIf
   ],
-  templateUrl: './accesso.html',
-  styleUrl: './accesso.scss',
+  templateUrl: './register.html',
+  styleUrl: './register.scss',
 })
-export class Accesso {
+export class Register {
+
   private formBuilder = inject(FormBuilder);
-  private accessoServ = inject(AccessoService);
+  private accessoServ = inject(AccessService);
   private router = inject(Router);
 
   oggi = new Date().toISOString().split('T')[0];
@@ -42,8 +42,10 @@ export class Accesso {
     gender: ['', [Validators.required]],
   });
 
+
   salva(): void {
     this.accessoServ.salvaUtente(this.accessoForm.value as Utente);
-    this.router.navigateByUrl('/feed');
+    this.accessoServ.postUtente(this.accessoForm.value as Utente);
+    this.router.navigateByUrl('/map');
   }
 }
