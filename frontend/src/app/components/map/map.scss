@@ -1,8 +1,32 @@
-#map { height: 100vh;}
+#map { 
+  height: 100vh;
+}
 
 .add-button {
-    position: fixed;
-    bottom: 10vh;
-    right: 3vh;
-    z-index: 1000;
+  position: fixed;
+  bottom: 10vh;
+  right: 3vh;
+  z-index: 1000;
+}
+
+.simple-popup {
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  cursor: pointer;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  
+  &:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
 }

@@ -1,1 +1,46 @@
-<p>detail works!</p>
+<div class="detail-container" *ngIf="report()">
+    <div class="detail-card">
+        <mat-card class="report-card custom-card" appearance="outlined" >
+            <mat-card-header class="custom-card-header">
+              <mat-card-title>{{report()?.title}}</mat-card-title>
+              <mat-card-subtitle>{{report()?.distance}}</mat-card-subtitle>
+            </mat-card-header>
+            <div class="image-container">
+              <img mat-card-image src="{{report()!.images[currentImg()]}}"alt="{{report()?.title}}">
+              
+              <button class="nav-arrow left" (click)="prevImg()" *ngIf="report()!.images.length>1"> < </button>
+              <button class="nav-arrow right" (click)="nextImg()" *ngIf="report()!.images.length>1"> > </button>
+              <div class="dots-container" *ngIf="report()!.images.length>1">
+                <span *ngFor="let img of report()!.images; let i=index"
+                [class.active]="i === currentImg()"
+                (click)="currentImg.set(i)">
+              </span>
+            </div>
+          </div>
+          <mat-card-content class="custom-card-content">
+            
+            <div class="location-section" *ngIf="report()?.lat && report()?.lng">
+              <div class="location-info">
+                <mat-icon>location_on</mat-icon>
+                <span>
+                  <a (click)="focusonMap()" class="map-link" style="cursor: pointer;">
+                    Vedi sulla mappa principale
+                  </a>
+                </span>
+              </div>
+              
+              <p class="description">
+                {{report()?.description}}
+              </p>
+              
+              <div class="chips-container">
+                <mat-chip *ngFor="let cat of report()?.categories">
+                  {{ cat }}
+                </mat-chip>
+              </div>
+              </div>
+            </mat-card-content>
+              </mat-card>
+              </div>
+    </div>
+

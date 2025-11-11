@@ -1,4 +1,39 @@
-.report-card {
-  max-width:100%;
+.report-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  padding: 20px;
+  place-items: center;
+  min-height: 50vh;
+  border-radius:24px ;
+  padding: 20px;
+  
+
 }
 
+
+.report-card {
+  margin: 0 auto;
+  max-width: 500px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  background: #fff ;
+  padding: 24px;
+  width: 100%;
+
+}
+
+img[mat-card-image]{
+  width: 100%;
+  aspect-ratio: 1 /1;
+  object-fit: cover;
+  
+}
+
+@media (min-width: 400px) {
+  .report-grid {
+    grid-template-columns: minmax(500px, 700px);
+    justify-items: center;
+  }
+ 
+}
