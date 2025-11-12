@@ -15,7 +15,7 @@
                 <div class="category-item">
                     <mat-form-field>
                         <mat-label>Categoria</mat-label>
-                        <mat-select>
+                        <mat-select [formControlName]="i">
                             @for (name of categoryNames; track $index) {
                                 <mat-option value="{{name}}">{{name}}</mat-option>
                             }
@@ -24,29 +24,47 @@
                 </div>
                     
                     
-                <button matButton="tonal" (click)="removeCategoryInput(i)"><mat-icon>delete</mat-icon></button>
+                <!--<button matButton="tonal" type="button" (click)="removeCategoryInput(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>-->
             }
-            <button matButton="tonal" (click)="addCategoryInput()"><mat-icon>add</mat-icon></button>
+            <!--<button matButton="tonal" type="button" (click)="addCategoryInput()">
+                <mat-icon>add</mat-icon>
+            </button>-->
         </div>
     
-        <button matButton="tonal" (click)="fileInput.click()">
-            <mat-icon>photo_camera</mat-icon>
-            Scatta o scegli foto
-        </button>
-    
-        <input
-        type="file"
-        accept="image/*"
-        capture="environment"
-        #fileInput
-        hidden
-        (change)="onImageSelected($event)"
-        />
-    
-        <div class="gallery">
-            @for(image of images; track $index){
-                <img src="{{image}}" alt="">
-            }
+        <div class="img-container">
+
+            <!--<div class="gallery">
+                @for(image of images; track $index){
+                    <img src="{{image}}" alt="">
+                }
+            </div>-->
+
+            <div class="gallery">
+                @for(image of images; track $index){
+                    <div class="image-wrapper">
+                        <img src="{{image}}" alt="">
+                        <button type="button" class="remove-btn" (click)="removeImage($index)">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                }
+            </div>
+
+            <button matButton="tonal" type="button" (click)="fileInput.click()">
+                <mat-icon>photo_camera</mat-icon>
+                Scatta o scegli foto
+            </button>
+
+            <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            #fileInput
+            hidden
+            (change)="onImageSelected($event)"
+            />
         </div>
             
         <button matButton="tonal" [disabled]="!reportForm.valid" type="submit">Invia</button>

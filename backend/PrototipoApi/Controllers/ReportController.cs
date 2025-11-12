@@ -95,7 +95,7 @@ public class ReportController : ControllerBase
         try
         {
             await _serviceReport.AddReport(idUser,reportDTO);
-            return Ok();
+            return Ok(new { success = true });
         }
         catch (Exception ex)
         {
