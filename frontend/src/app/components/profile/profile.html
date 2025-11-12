@@ -1,1 +1,87 @@
-<p>profile works!</p>
+<div class="profile-page">
+
+  <!-- === CARD PROFILO UTENTE === -->
+  <mat-card class="profile-card" appearance="outlined">
+  <div class="profile-header">
+    <!-- Avatar -->
+    <div class="avatar">
+      <mat-icon class="avatar-icon">person_outline</mat-icon>
+    </div>
+
+    <!-- Info utente -->
+    <ng-container *ngIf="utente as u; else loadingUser">
+      <div class="info-section">
+        <!-- Riga nome + bottone -->
+        <div class="top-row">
+          <div class="name">{{ u.username }}</div>
+          <button mat-stroked-button color="primary" class="edit-btn">
+            <mat-icon>edit</mat-icon>
+            Modifica
+          </button>
+        </div>
+
+        <!-- Riga dati -->
+        <div class="meta">
+          <span class="meta-item">
+            <mat-icon>cake</mat-icon>
+            {{ u.dataNascita }}
+          </span>
+          <span class="dot">•</span>
+          <span class="meta-item">
+            <mat-icon>person</mat-icon>
+            {{ u.gender }}
+          </span>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Placeholder mentre carica -->
+    <ng-template #loadingUser>
+      <div class="skeleton name"></div>
+      <div class="skeleton line"></div>
+    </ng-template>
+  </div>
+</mat-card>
+
+
+  <!-- === SEZIONE REPORT === -->
+  <div class="reports-section">
+  <h1 class="reports-title">I tuoi report</h1>
+
+  <ng-container *ngIf="userReports?.length; else noReports">
+    <mat-card
+      *ngFor="let r of userReports; trackBy: trackByReportId"
+      class="report-item"
+      appearance="outlined"
+    >
+      <div class="thumb">
+        <img [src]="r.images?.[0] || 'assets/img-placeholder.jpg'"
+             [alt]="r.title || 'immagine report'"/>
+      </div>
+
+      <div class="info">
+        <div class="title">{{ r.title || 'Senza titolo' }}</div>
+        <div class="meta">
+          <span class="date">
+            <mat-icon>event</mat-icon>
+            {{ r.date || '—' }}
+          </span>
+          <span class="dot">•</span>
+          <span class="id">ID: {{ r.id }}</span>
+        </div>
+        <p class="desc">
+          {{ r.description || 'Nessuna descrizione.' }}
+        </p>
+      </div>
+    </mat-card>
+  </ng-container>
+
+  <ng-template #noReports>
+    <p class="no-reports">Nessun report trovato per questo utente.</p>
+  </ng-template>
+
+
+
+  </div>
+
+</div>

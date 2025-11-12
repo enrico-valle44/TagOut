@@ -1,0 +1,204 @@
+/* --- CARD PROFILO --- */
+.profile-card {
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+/* Layout principale header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Avatar tondo */
+.avatar {
+  flex: 0 0 auto;
+  width: clamp(4rem, 10vw, 6rem);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: grid;
+  place-items: center;
+
+  .avatar-icon {
+    display: block;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1;
+    width: 1em;  
+    height: 1em;  
+    color: plum;
+  }
+}
+
+/* Colonna info */
+.info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+/* Riga nome + bottone */
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  flex-wrap: wrap;
+}
+
+.name {
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  color: #222;
+}
+
+/* Bottone piccolo */
+.edit-btn {
+  margin-left: auto; 
+  margin-right: 10%;
+  padding: 0.25rem 0.75rem;
+  font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+  line-height: 1;
+  height: auto; /* più compatto verticalmente */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  mat-icon {
+    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* Riga dati */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #555;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+
+  .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .dot {
+    opacity: 0.5;
+  }
+}
+
+/* Contenitore sezione */
+.reports-section {
+  padding: clamp(0.5rem, 2vw, 1rem) 0;
+}
+
+/* Titolo sezione */
+.reports-title {
+  margin: auto;
+  margin-left: 2%;
+  font-size: clamp(1.25rem, 1.5rem, 1.25rem);
+  font-weight: 500;
+}
+
+/* Card del report: layout orizzontale */
+.report-item {
+  display: flex;
+  flex-direction: row;           /* orizzontale: immagine + testo fianco a fianco */
+  align-items: stretch;
+  gap: clamp(0.6rem, 2vw, 1rem);
+  /* riduco il padding così la thumb è vicina al bordo sinistro */
+  padding: clamp(0.5rem, 1.5vw, 0.75rem);
+  margin-block: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.report-item .thumb {
+  flex: 0 0 clamp(1rem, 15vw, 10rem); /* larghezza fissa e fluida */
+  height: clamp(1rem, 15vw, 10rem);   /* altezza fissa e fluida */
+  display: flex;
+  justify-content: left;
+  padding: 0.1rem;        /* piccolo spazio interno */
+  border-radius: 0.1rem;
+}
+
+/* Immagine intera e proporzionata */
+.report-item .thumb img {
+  max-width: 100%;   /* mai più largo del contenitore */
+  max-height: 100%;  /* mai più alto del contenitore */
+  width: auto;       /* dimensioni proporzionali */
+  height: auto;
+  object-fit: contain; //non taglia
+}
+
+
+/* Colonna info a destra */
+.report-item .info {
+  flex: 1 1 auto;
+  min-width: 50%;              /* evita overflow del testo */
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Titolo compatto */
+.report-item .title {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Riga meta: data + id */
+.report-item .meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  opacity: 0.85;
+
+  .date {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    mat-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+      line-height: 1;
+    }
+  }
+
+  .dot { opacity: 0.6; }
+}
+
+
+
+
+/* --- Mobile --- */
+@media (max-width: 40rem) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .top-row {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .edit-btn {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
