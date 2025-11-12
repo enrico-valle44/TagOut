@@ -2,7 +2,7 @@ import { Router, Routes } from '@angular/router';
 import { Map } from './components/map/map';
 import { Feed } from './components/feed/feed';
 import { Detail } from './components/detail/detail';
-import { User } from './components/user/user';
+import { Profile } from './components/profile/profile';
 import { NotFound } from './components/not-found/not-found';
 import { NewReport } from './components/new-report/new-report';
 import { inject } from '@angular/core';
@@ -29,7 +29,7 @@ export const routes: Routes = [
   { path: 'map', component: Map },
   { path: 'feed', component: Feed },
   { path: 'detail/:id', component: Detail },
-  { path: 'user', component: User },
+  { path: 'profile', component: Profile },
   { path: 'new-report', component: NewReport },
   { path: '**', component: NotFound },
 ];
