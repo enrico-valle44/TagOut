@@ -13,6 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { LocalStorageService } from '../../services/local-storage-service/local-storage.service';
+import { Category } from '../../model/category';
 
 @Component({
   selector: 'app-new-report',
@@ -33,10 +35,12 @@ export class NewReport {
   public categoryNames: string[] = [];
   public images: string[] = [];
   private locationServ = inject(LocationService);
+  private localStorageServ = inject(LocalStorageService);
 
   constructor() {
-    this.dataServ.getCategories().then((categories) => {
-      this.categoryNames = categories;
+    this.dataServ.getCategories().then((categoryNames: string[]) => {
+      this.categoryNames = categoryNames;
+      console.log(this.categoryNames);
     });
   }
 
@@ -85,6 +89,7 @@ export class NewReport {
       newReport.lat = pos.coords.latitude;
       newReport.lng = pos.coords.longitude;
     });
-    this.dataServ.postReport(newReport);
+
+    this.dataServ.postReport(newReport, this.localStorageServ.getId());
   }
 }
