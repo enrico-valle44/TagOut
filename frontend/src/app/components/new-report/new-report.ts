@@ -75,7 +75,7 @@ export class NewReport {
     }
   }
 
-  postReport() {
+  async postReport() {
     const newReport = {
       title: this.reportForm.value.title!,
       description: this.reportForm.value.description!,
@@ -85,11 +85,11 @@ export class NewReport {
       lat: 0,
       lng: 0,
     };
-    this.locationServ.getPosition().then((pos) => {
-      newReport.lat = pos.coords.latitude;
-      newReport.lng = pos.coords.longitude;
-    });
+    var pos = await this.locationServ.getPosition();
+  
+    newReport.lat = pos.coords.latitude;
+    newReport.lng = pos.coords.longitude;
 
-    this.dataServ.postReport(newReport, this.localStorageServ.getId());
+    await this.dataServ.postReport(newReport, this.localStorageServ.getId());
   }
 }

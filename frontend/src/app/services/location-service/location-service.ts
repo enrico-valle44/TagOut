@@ -18,7 +18,7 @@ export class LocationService {
   getPosition(): Promise<GeolocationPosition> {
 
     return new Promise<GeolocationPosition>((Resolve, Reject) => {
-      return navigator.geolocation.getCurrentPosition(Resolve, Reject);
+      return navigator.geolocation.getCurrentPosition(Resolve, Reject, {enableHighAccuracy: true, timeout: 8000, maximumAge: 0});
     })
 
   }
