@@ -44,8 +44,9 @@ export class Register {
 
 
   salva(): void {
-    this.accessoServ.salvaUtente(this.accessoForm.value as Utente);
+    this.accessoServ.salvaInfoUtente(this.accessoForm.value as Utente);
     this.accessoServ.postUtente(this.accessoForm.value as Utente);
+    //this.accessoServ.salvaId();
     this.router.navigateByUrl('/map');
   }
 }

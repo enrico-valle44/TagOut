@@ -5,13 +5,23 @@ import { LocalStorageService } from '../local-storage-service/local-storage.serv
 @Injectable({
   providedIn: 'root'
 })
+
 export class AccessService {
   private chiave = 'tagout-utente';
 
+  private utente: Utente = {
+  username: '',
+  dataNascita: '',
+  gender: 'A'
+  }; //conterrà l'id dopo la post
+
   constructor(private memoria: LocalStorageService) {}
 
-  salvaUtente(utente: Utente): void {
+  salvaInfoUtente(utente: Utente): void {
     this.memoria.salva(this.chiave, utente);
+    this.utente.username = utente.username;
+    this.utente.dataNascita = utente.dataNascita;
+    this.utente.gender = utente.gender;
   }
 
   leggiUtente(): Utente | null {
@@ -35,13 +45,20 @@ export class AccessService {
     .then(resp => resp.json())
     .then(data => {
       console.log('Risposta server:', data);
+      this.utente.id = data; 
+      // console.log('Utente:', this.utente.id);
+      this.memoria.salva(this.chiave, this.utente)
       return data;
     })
     .catch(err => {
       console.error('Errore POST:', err);
-      throw err; // rilancia l'errore se vuoi gestirlo a chi chiama la funzione
+      throw err; 
     });
   }
+
+  // salvaId() {
+  //   this.memoria.salva(this.chiave, this.utente)
+  // }
 
 }
 

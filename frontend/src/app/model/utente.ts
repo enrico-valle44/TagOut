@@ -1,6 +1,6 @@
 export interface Utente {
     id?: number;
-    userName: string;
+    username: string;
     dataNascita: string;
     gender: 'M' | 'F' | 'A';
 }
