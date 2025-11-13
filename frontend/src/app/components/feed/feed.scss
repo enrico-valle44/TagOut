@@ -32,23 +32,30 @@
     }
 
 }
-.add-button {
-    position: fixed;
-    bottom: 5.5rem;
-    right: 2rem;
-    z-index: 1001;
 
-    @media (max-width:768px) {
-        bottom: 5rem;
-        right: 1.5rem;
-    }
-    @media (max-width:480px) {
-        bottom: 1rem;
-        right: 1rem;
-    }
-        
-        
+.add-button {
+  position: fixed;
+  bottom: 10vh;
+  right: 3vh;
+  z-index: 1000;
 }
+// .add-button {
+//     position: fixed;
+//     bottom: 5.5rem;
+//     right: 2rem;
+//     z-index: 1001;
+
+//     @media (max-width:768px) {
+//         bottom: 5rem;
+//         right: 1.5rem;
+//     }
+//     @media (max-width:480px) {
+//         bottom: 1rem;
+//         right: 1rem;
+//     }
+        
+        
+// }
 
 
 
