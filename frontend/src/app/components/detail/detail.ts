@@ -47,6 +47,10 @@ export class Detail {
       .catch(() => this.router.navigate(['not-found']));
   }
 
+  goBack(){
+    this.router.navigate(['/feed']);
+  }
+
   nextImg() {
     const imgs = this.report()?.images;
     if (!imgs) return;

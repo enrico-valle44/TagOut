@@ -78,6 +78,10 @@ export class NewReport {
     this.images.splice(index, 1);
   }
 
+  goBack(){
+    this.router.navigate(['/map']);
+  }
+
   /*async postReport() {
     try {
       const newReport = {
@@ -124,10 +128,17 @@ export class NewReport {
 
     await this.dataServ.postReport(newReport, this.localStorageServ.getId());
 
+    alert('Il report è stato pubblicato !');
+
     this.reportForm.reset();
     this.images = [];
     this.categories.clear();
 
     this.router.navigateByUrl('/map');
+  }
+  catch(err: Error)
+  {
+    console.error('Errore postReport:', err);
+    alert('Errore durante la pubblicazione del report.Riprova.');
   }
 }

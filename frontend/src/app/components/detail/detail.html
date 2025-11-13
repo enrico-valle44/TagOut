@@ -1,4 +1,10 @@
 <div class="detail-container" *ngIf="report()">
+  <div class="back-button-container">
+    <button mat-button class="back-button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Indietro
+    </button>
+  </div>
   <div class="detail-card">
     <mat-card class="report-card custom-card" appearance="outlined">
       <mat-card-header class="custom-card-header">
