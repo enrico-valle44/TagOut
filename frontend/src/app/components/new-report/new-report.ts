@@ -117,7 +117,7 @@ export class NewReport {
       description: this.reportForm.value.description!,
       categories: this.reportForm.value.categories as string[],
       images: this.images,
-      date: new Date().toISOString(),
+      dateReport: new Date().toISOString(),
       lat: 0,
       lng: 0,
     };

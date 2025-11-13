@@ -9,7 +9,7 @@ public class ReportViewModel
     public int IdUser { get; set; }
     public required string Title { get; set; }
     public string? Description { get; set; }
-    public DateTime DateReport { get; set; }
+    public string DateReport { get; set; }
 
     public List<string> Categories { get; set; }
     public List<string> Images { get; set; }

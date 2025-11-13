@@ -13,4 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class ReportCard {
   public report = input<Report>();
+
+  ngOnInit(){
+    console.log('Report:', this.report());
+ }
 }

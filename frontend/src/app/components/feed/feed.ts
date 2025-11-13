@@ -41,7 +41,7 @@ export class Feed {
   async loadReports() {
     const unorderedReports = await this.dataServ.getReports();
 
-    this.reports = this.sortReportsByDateTime(this.reports);
+    //this.reports = this.sortReportsByDateTime(this.reports);
 
     if ('geolocation' in navigator) {
       const orderedByDistance = await this.locationServ.sortReportsByDistance(
@@ -55,8 +55,8 @@ export class Feed {
 
   private sortReportsByDateTime(reports: Report[]): Report[] {
     return reports.sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
+      const dateA = new Date(a.dateReport);
+      const dateB = new Date(b.dateReport);
 
       return dateB.getTime() - dateA.getTime();
     });

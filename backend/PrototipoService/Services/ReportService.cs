@@ -27,8 +27,8 @@ public class ReportService : IReportService
             IdUser = r.IdUser,
             Title = r.Title,
             Description = r.Description,
-            DateReport = r.DateReport,
-            Categories = r.Categories.Select(c => c.Name).ToList(),
+             DateReport = r.DateReport.ToString("o"), 
+             Categories = r.Categories.Select(c => c.Name).ToList(),
             Images = r.Images.Select(i => i.Path).ToList(),
             Longitude = r.Longitude,
             Latitude = r.Latitude,
@@ -44,8 +44,8 @@ public class ReportService : IReportService
                 IdUser = r.IdUser,
                 Title = r.Title,
                 Description = r.Description,
-                DateReport = r.DateReport,
-                Categories = r.Categories.Select(c => c.Name).ToList(),
+                DateReport = r.DateReport.ToString("o"),             
+               Categories = r.Categories.Select(c => c.Name).ToList(),
                 Images = r.Images.Select(i => i.Path).ToList(),
                 Longitude = r.Longitude,
                 Latitude = r.Latitude,
@@ -68,8 +68,8 @@ public class ReportService : IReportService
                 IdUser = r.IdUser, //teniamolo se no lo restituisce sempre = 0 ... poi vediamo
                 Title = r.Title,
                 Description = r.Description,
-                DateReport = r.DateReport,
-                Categories = r.Categories.Select(c => c.Name).ToList(),
+                 DateReport = r.DateReport.ToString("o"), 
+                 Categories = r.Categories.Select(c => c.Name).ToList(),
                 Images= r.Images.Select(i => i.Path).ToList(),
                 Longitude = r.Longitude,
                 Latitude = r.Latitude,
@@ -95,7 +95,7 @@ public class ReportService : IReportService
             Title = reportDTO.Title,
             Description = reportDTO.Description,
             IdUser = idUser,
-            DateReport = reportDTO.Date,
+            DateReport = DateTime.UtcNow,
             Longitude = reportDTO.Lng,
             Latitude = reportDTO.Lat,
             Categories = categories,
@@ -126,8 +126,8 @@ public class ReportService : IReportService
         if (!string.IsNullOrWhiteSpace(reportDTO.Description))
             report.Description = reportDTO.Description;
 
-        if (reportDTO.Date.HasValue)
-            report.DateReport = reportDTO.Date.Value;
+        if (reportDTO.DateReport.HasValue)
+            report.DateReport = reportDTO.DateReport.Value;
 
         if (reportDTO.Lat.HasValue)
             report.Latitude = reportDTO.Lat.Value;

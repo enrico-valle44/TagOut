@@ -2,7 +2,7 @@ export interface Report {
   id?: number;
   description?: string;
   title: string;
-  date: string;
+  dateReport: string ;
   categories: string[];
   images: string[];
   lat: number;

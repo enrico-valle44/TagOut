@@ -5,7 +5,7 @@ public class ReportDTO
 {
     public required string Title { get; set; }
     public string? Description { get; set; }
-    public DateTime Date { get; set; }
+   // public DateTime DateReport { get; set; }
     public List<string>? Categories { get; set; }
     public List<string>? Images { get; set; }
     public double Lat { get; set; }
