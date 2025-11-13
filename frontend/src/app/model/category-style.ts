@@ -1,4 +1,3 @@
-// category-style.ts
 export interface CategoryStyle {
   bg: string;
   text: string;

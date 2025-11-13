@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Feed {
   private dataServ = inject(DataService);
-  private locationServ = inject(LocationService);
+ private locationServ = inject(LocationService);
   public reports: Report[] = [];
 
   constructor() {
@@ -40,13 +40,27 @@ export class Feed {
 
   async loadReports() {
     const unorderedReports = await this.dataServ.getReports();
-    if ('geolocation' in navigator) {
-      const orderdReports = await this.locationServ.sortReportsByDistance(
-        unorderedReports
-      );
-      this.reports = orderdReports;
+
+    this.reports = this.sortReportsByDateTime(this.reports);
+
+     if ('geolocation' in navigator) {
+     const orderedByDistance = await this.locationServ.sortReportsByDistance(
+       unorderedReports
+     );
+      this.reports = this.sortReportsByDateTime(orderedByDistance);
     } else {
-      this.reports = unorderedReports;
+      this.reports = this.sortReportsByDateTime(unorderedReports);
     }
   }
+
+    private sortReportsByDateTime(reports: Report[]): Report[] {
+    return reports.sort((a, b) => {
+
+      const dateA = new Date(a.dateReport);
+      const dateB = new Date(b.dateReport);
+      
+      return dateB.getTime() - dateA.getTime();
+    });
+  }
 }
+
