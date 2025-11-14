@@ -1,8 +1,36 @@
 <div class="feed-container">
+      <mat-chip-set class="chip-overlay" aria-label="Selezione categorie">
+    <mat-chip 
+      [class.active]="selectedCategory === 'Sport'" 
+      (click)="onChipClick('Sport')">
+      Sport
+    </mat-chip>
+    <mat-chip 
+      [class.active]="selectedCategory === 'Cultura'" 
+      (click)="onChipClick('Cultura')">
+      Cultura
+    </mat-chip>
+    <mat-chip 
+      [class.active]="selectedCategory === 'Politica'" 
+      (click)="onChipClick('Politica')">
+      Politica
+    </mat-chip>
+    <mat-chip 
+      [class.active]="selectedCategory === ''" 
+      (click)="onChipClick('')">
+      Tutti
+    </mat-chip>
+  </mat-chip-set>
     <div class="cards-grid">
-        @for (report of reports; track $index) {
+        @for (report of filteredReports; track $index) {
             <app-report-card [report]="report"></app-report-card>
         }
+        <div class="empty-state" *ngIf="filteredReports.length === 0">
+            <p>Nessun report disponibile</p>
+            <p *ngIf="selectedCategory" class="empty-filter-message">
+                Nessun report trovato per la categoria "{{selectedCategory}}"
+            </p>
+        </div>
     </div>
 </div>
 <button matFab routerLink="/new-report" class="add-button" aria-label="Aggiungi report">

@@ -1,0 +1,52 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background: #7b2ae8; 
+  font-family: Arial, sans-serif
+}
+ 
+
+.text {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.text2 {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: #4b0082; /* viola scuro */
+  color: white;
+  padding: 10px 40px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background-color: #360369; /* effetto hover più scuro */
+}
+
+.footer {
+  position: fixed;
+  bottom: 80px;
+  right: 5px;
+  font-size: 12px;
+  color: #320155; 
+  font-weight: normal;
+}
+

@@ -8,6 +8,7 @@ import { NewReport } from './components/new-report/new-report';
 import { inject } from '@angular/core';
 import { AccessService } from './services/access-service/access-service';
 import { Register } from './components/register/register';
+import { Bentornato } from './components/bentornato/bentornato';
 
 export const routes: Routes = [
     {
@@ -18,7 +19,7 @@ export const routes: Routes = [
       const router = inject(Router);
 
       if (accessoServ.haUtente()) {
-        return router.createUrlTree(['/map']);
+        return router.createUrlTree(['/login']);
       } else {
         return router.createUrlTree(['/register']);
       }
@@ -26,6 +27,7 @@ export const routes: Routes = [
     component: Register 
   },
   { path: 'register', component: Register },
+  { path: 'login', component: Bentornato }, 
   { path: 'map', component: Map },
   { path: 'feed', component: Feed },
   { path: 'detail/:id', component: Detail },

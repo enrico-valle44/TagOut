@@ -13,8 +13,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ReportCard {
   public report = input<Report>();
+  public showActions = input<boolean>(true);
 
-  ngOnInit(){
-    console.log('Report:', this.report());
- }
+ // ngOnInit(){
+  //  console.log('Report:', this.report());
+ //}
 }

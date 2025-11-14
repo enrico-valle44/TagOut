@@ -14,11 +14,19 @@
         <!-- Riga nome + bottone -->
         <div class="top-row">
           <div class="name">{{ u.username }}</div>
-          <button mat-stroked-button color="primary" class="edit-btn"[routerLink]="['/new-report']">
-            <mat-icon>add</mat-icon>
-            Crea
+          <div class="top-actions">
+            
+            <button mat-stroked-button color="primary" class="edit-btn action-button" [routerLink]="['/new-report']">
+              <mat-icon>add</mat-icon>
+              Crea
+            </button>
+            <br/>
+            <button mat-stroked-button class="logout-btn action-button" (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              Logout
             </button>
         </div>
+      </div>
 
         <!-- Riga dati -->
           <div class="meta">
@@ -32,8 +40,9 @@
               <mat-icon>person</mat-icon>
               {{ u.gender }}
             </span>
+          </div>
         </div>
-      </div>
+      
     </ng-container>
 
     <!-- Placeholder mentre carica -->
@@ -43,13 +52,23 @@
           <div class="skeleton line"></div>
         </div>
       </ng-template>
-    </div>
+   </div>
   </mat-card>
 
 
   <!-- === SEZIONE REPORT === -->
   <div class="reports-section">
   <h1 class="reports-title">I tuoi report</h1>
+
+  <!-- 1) STATO: CARICAMENTO -->
+    <ng-container *ngIf="isLoadingReports; else reportsLoaded">
+      <div class="loading-box">
+        <mat-spinner diameter="40"></mat-spinner>
+        <span>Caricamento dei tuoi report...</span>
+      </div>
+    </ng-container>
+  <!-- 2) STATO: CARICAMENTO TERMINATO -->
+    <ng-template #reportsLoaded>
 
   <ng-container *ngIf="userReports?.length; else noReports">
 
@@ -64,6 +83,7 @@
       </div>
 
       <div class="info">
+        <div class="main-info">
           <div class="title">
             {{ r.title || 'Senza titolo' }}
           </div>
@@ -84,7 +104,7 @@
               </mat-chip>
             </mat-chip-listbox>
           </div>
-      
+        </div>
 
         <!-- Azioni (eliminazione) -->
         <div class="actions">
@@ -93,7 +113,7 @@
             <button
               mat-stroked-button
               color="warn"
-              class="delete-btn"
+              class="action-button"
               (click)="startDelete(r.id)"
             >
               <mat-icon>delete</mat-icon>
@@ -135,13 +155,14 @@
         </div>
       </div>
     </mat-card>
+
   </ng-container>
 
   <ng-template #noReports>
     <p class="no-reports">Nessun report trovato per questo utente.</p>
   </ng-template>
 
-
+</ng-template>
 
   </div>
 
