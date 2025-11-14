@@ -14,7 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-profile',
-  imports: [ReportCard, MatButtonModule, MatIconModule, RouterLink, CommonModule, MatCardModule, MatChipsModule, MatProgressSpinnerModule],
+  imports: [ MatButtonModule, MatIconModule, RouterLink, CommonModule, MatCardModule, MatChipsModule, MatProgressSpinnerModule],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
