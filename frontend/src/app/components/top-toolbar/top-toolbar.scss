@@ -1,4 +1,4 @@
-.top-toolbar {
+/*.top-toolbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,12 +9,28 @@
   padding: 0 16px;
   height: 64px;
   z-index: 1000;
+} */
+  
+
+  .top-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center; /* aggiunto: centra il contenuto */
+  align-items: center;
+  padding: 0; /* rimuovi padding laterale se vuoi perfetto centrato */
+  height: 64px;
+  z-index: 1000;
 }
+
 
 .top-toolbar .logo {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 135%;
 }
 
 .top-toolbar .logo img {
