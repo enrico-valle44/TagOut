@@ -1,0 +1,130 @@
+
+:host {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.welcome-page {
+  height: 100vh;               
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.5rem;             /* solo orizzontale */
+  box-sizing: border-box;
+  background: #f5f5f5;
+}
+
+/* Card centrale, un po' più grande e più lunga */
+.welcome-card {
+  width: 100%;
+  max-width: 30rem;              /* un filo più larga */
+  min-height: 18rem;             /* la rende più “alta” anche con poco testo */
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 1px solid rgba(103, 58, 183, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* Header della card */
+mat-card-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
+}
+
+/* Titolo: */
+mat-card-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  font-size: 1.7rem;     /* un po' più grande */
+  font-weight: 500;
+}
+
+.username {
+  font-weight: 600;
+  color: #673ab7;
+}
+
+/* Contenuto della card */
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+  gap: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+/* Testo "clicca per entrare" + eventuale descrizione */
+.welcome-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.welcome-list {
+  margin: 0;
+  padding-left: 2rem;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.enter-button {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.4rem;
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+}
+
+.enter-button mat-icon {
+  font-size: 1.2rem;
+}
+@media (max-width: 40rem) {
+
+  .welcome-page {
+    padding: 0 1rem;
+  }
+
+  .welcome-card {
+    max-width: 100%;
+    min-height: 17rem;
+  }
+
+  mat-card-title {
+    font-size: 1.4rem;
+  }
+
+  .welcome-text {
+    font-size: 0.95rem;
+  }
+
+  .enter-button {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 26rem) {
+
+  .welcome-page {
+    padding: 0 0.75rem;
+  }
+
+  mat-card-title {
+    font-size: 1.25rem;
+  }
+
+  .welcome-card {
+    min-height: 16rem;
+  }
+
+  .enter-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.9rem;
+  }
+}
