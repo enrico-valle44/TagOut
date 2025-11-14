@@ -69,19 +69,31 @@ export class DataService {
   
   /** Prende l'id dal localStorage e chiama GET /UserInfo/{id} */
   getUserInfo(idUser: number): Promise<Utente | null> {
-    return fetch(`http://localhost:5089/UserInfo/${idUser}`)
-      .then((resp) => {
-        if (!resp.ok) {
-          console.error(`Errore HTTP ${resp.status}`);
-          return null;
-        }
-        return resp.json() as Promise<Utente>;
-      })
-      .catch((err) => {
-        console.error('Errore getUserInfo:', err);
+  return fetch(`http://localhost:5089/UserInfo/${idUser}`)
+    .then(async (resp) => {
+      if (!resp.ok) {
+        console.error(`Errore HTTP ${resp.status}`);
         return null;
-      });
-  }
+      }
+      const raw = await resp.json();  // quello che arriva dal backend
+      //cosa arriva davvero
+      console.log('UserInfo:', raw);
+      // mappo le proprietà del backend nel mio modello Utente
+      const utente: Utente = {
+        id: raw.id,
+        username: raw.username,
+        dataNascita: raw.dob ?? raw.dataNascita ?? '',
+        gender: (raw.gender ?? 'A') as 'M' | 'F' | 'A',
+      };
+
+      return utente;
+    })
+    .catch((err) => {
+      console.error('Errore getUserInfo:', err);
+      return null;
+    });
+}
+
 
 
   /** Ritorna i report dell’utente: GET /Report/byUser/{id} (adatta il path al tuo backend) */
@@ -98,7 +110,22 @@ export class DataService {
         console.error('Errore getReportsByUserId:', err);
         return [];
       });
-}
+  }
+
+    /** Elimina un report: DELETE /Report/delete/{id} */
+  deleteReport(idReport: number) {
+    return fetch(`http://localhost:5089/Report/delete/${idReport}`, {
+      method: 'DELETE',
+    }).then((resp) => {
+      if (!resp.ok) {
+        console.error(`Errore DELETE report ${idReport} - HTTP ${resp.status}`);
+        throw new Error(`Errore eliminazione report (status ${resp.status})`);
+      }
+    }).catch(err => {
+      console.error('Errore deleteReport:', err);
+      throw err;
+    });
+  }
 
 
 }

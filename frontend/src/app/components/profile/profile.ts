@@ -27,6 +27,10 @@ export class Profile {
   public utente: Utente | null = null;
   public userReports: Report[] = [];
 
+  public confirmDeleteId: number | null = null; // id del report per cui sto chiedendo conferma di eliminazione 
+  public isDeletingId: number | null = null; /// id del report che è in fase di eliminazione (per mostrare "in corso")
+  public deleteError: string | null = null; // messaggio di errore legato alla delete 
+
   constructor() {
     this.loadProfile();
   }
@@ -54,5 +58,49 @@ export class Profile {
   //utile per il caricamento in lista dei report
   trackByReportId(index: number, report: Report) {
     return report.id;
+  }
+  /** Primo click su "Elimina": attivo la richiesta di conferma per quel report */
+  startDelete(idReport: number | undefined) {
+    if (!idReport) return;
+    this.deleteError = null;
+
+    // se clicco di nuovo sullo stesso, annullo la conferma
+    if (this.confirmDeleteId === idReport) {
+      this.confirmDeleteId = null;
+    } else {
+      this.confirmDeleteId = idReport;
+    }
+  }
+
+  /** Click su "Annulla" nella conferma */
+  cancelDelete() {
+    this.confirmDeleteId = null;
+    this.isDeletingId = null;
+    this.deleteError = null;
+  }
+
+  /** Click su "Conferma": chiamo il backend e aggiorno la lista */
+  async confirmDelete(idReport: number | undefined) {
+    if (!idReport) return;
+
+    this.isDeletingId = idReport;
+    this.deleteError = null;
+
+    try {
+      await this.dataServ.deleteReport(idReport);
+
+      // rimuovo dalla lista in memoria
+      this.userReports = this.userReports.filter(r => r.id !== idReport);
+
+      // reset stato conferma
+      if (this.confirmDeleteId === idReport) {
+        this.confirmDeleteId = null;
+      }
+    } catch (err) {
+      console.error(err);
+      this.deleteError = 'Impossibile eliminare il report. Riprova più tardi.';
+    } finally {
+      this.isDeletingId = null;
+    }
   }
 }

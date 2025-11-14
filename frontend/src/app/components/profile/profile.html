@@ -14,34 +14,37 @@
         <!-- Riga nome + bottone -->
         <div class="top-row">
           <div class="name">{{ u.username }}</div>
-          <button mat-stroked-button color="primary" class="edit-btn">
-            <mat-icon>edit</mat-icon>
-            Modifica
-          </button>
+          <button mat-stroked-button color="primary" class="edit-btn"[routerLink]="['/new-report']">
+            <mat-icon>add</mat-icon>
+            Crea
+            </button>
         </div>
 
         <!-- Riga dati -->
-        <div class="meta">
-          <span class="meta-item">
-            <mat-icon>cake</mat-icon>
-            {{ u.dataNascita }}
-          </span>
-          <span class="dot">•</span>
-          <span class="meta-item">
-            <mat-icon>person</mat-icon>
-            {{ u.gender }}
-          </span>
+          <div class="meta">
+            <span class="meta-item" *ngIf="u.dataNascita">
+              <mat-icon>cake</mat-icon>
+              <!-- data formattata -->
+              {{ u.dataNascita | date:'dd/MM/yyyy' }}
+            </span>
+            <span class="dot" *ngIf="u.dataNascita && u.gender">•</span>
+            <span class="meta-item" *ngIf="u.gender">
+              <mat-icon>person</mat-icon>
+              {{ u.gender }}
+            </span>
         </div>
       </div>
     </ng-container>
 
     <!-- Placeholder mentre carica -->
-    <ng-template #loadingUser>
-      <div class="skeleton name"></div>
-      <div class="skeleton line"></div>
-    </ng-template>
-  </div>
-</mat-card>
+      <ng-template #loadingUser>
+        <div class="info-section">
+          <div class="skeleton name"></div>
+          <div class="skeleton line"></div>
+        </div>
+      </ng-template>
+    </div>
+  </mat-card>
 
 
   <!-- === SEZIONE REPORT === -->
@@ -49,6 +52,7 @@
   <h1 class="reports-title">I tuoi report</h1>
 
   <ng-container *ngIf="userReports?.length; else noReports">
+
     <mat-card
       *ngFor="let r of userReports; trackBy: trackByReportId"
       class="report-item"
@@ -60,18 +64,75 @@
       </div>
 
       <div class="info">
-        <div class="title">{{ r.title || 'Senza titolo' }}</div>
-        <div class="meta">
-          <span class="date">
+          <div class="title">
+            {{ r.title || 'Senza titolo' }}
+          </div>
+
+          <div class="date">
             <mat-icon>event</mat-icon>
-            {{ r.dateReport|| '—' }}
-          </span>
-          <span class="dot">•</span>
-          <span class="id">ID: {{ r.id }}</span>
+            {{ r.dateReport | date:'dd/MM/yyyy HH:mm' }}
+          </div>
+
+          <p class="desc">
+            {{ r.description || 'Nessuna descrizione.' }}
+          </p>
+
+          <div class="categories-line" *ngIf="r.categories?.length">
+            <mat-chip-listbox aria-label="Categorie report">
+              <mat-chip *ngFor="let cat of r.categories">
+                {{ cat }}
+              </mat-chip>
+            </mat-chip-listbox>
+          </div>
+      
+
+        <!-- Azioni (eliminazione) -->
+        <div class="actions">
+          <!-- pulsante Elimina -->
+          <ng-container *ngIf="confirmDeleteId !== r.id; else confirmBlock">
+            <button
+              mat-stroked-button
+              color="warn"
+              class="delete-btn"
+              (click)="startDelete(r.id)"
+            >
+              <mat-icon>delete</mat-icon>
+              Elimina
+            </button>
+          </ng-container>
+
+          <!-- Stato conferma -->
+          <ng-template #confirmBlock>
+            <div class="confirm-box">
+              <p class="confirm-text" *ngIf="isDeletingId !== r.id">
+                Sei sicuro di voler eliminare questo report?
+              </p>
+              <p class="confirm-text" *ngIf="isDeletingId === r.id">
+                Eliminazione in corso. premi "Annulla" per annullare.
+              </p>
+
+              <div class="confirm-buttons">
+                <button
+                  mat-flat-button
+                  (click)="confirmDelete(r.id)"
+                  [disabled]="isDeletingId === r.id"
+                >
+                  <mat-icon>check</mat-icon>
+                  Conferma
+                </button>
+
+                <button
+                  mat-stroked-button
+                  (click)="cancelDelete()"
+                  [disabled]="isDeletingId === r.id"
+                >
+                  <mat-icon>close</mat-icon>
+                  Annulla
+                </button>
+              </div>
+            </div>
+          </ng-template>
         </div>
-        <p class="desc">
-          {{ r.description || 'Nessuna descrizione.' }}
-        </p>
       </div>
     </mat-card>
   </ng-container>
