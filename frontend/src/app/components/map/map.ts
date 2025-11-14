@@ -135,12 +135,21 @@ export class Map {
     );
     tileLayer.addTo(this.map);
 
-    const reports = await this.dataServ.getReportsGeoJsonByCategory(category);
-    const geojsonLayer = L.geoJSON(reports as GeoJsonObject, {
-      pointToLayer: this.myPointToLayer.bind(this),
-      onEachFeature: this.myOnEachFeature.bind(this),
-    });
-    geojsonLayer.addTo(this.map);
+    if (category === 'Tutti') {
+      const reports = await this.dataServ.getReportsGeoJson();
+      const geojsonLayer = L.geoJSON(reports as GeoJsonObject, {
+        pointToLayer: this.myPointToLayer.bind(this),
+        onEachFeature: this.myOnEachFeature.bind(this),
+      });
+      geojsonLayer.addTo(this.map);
+    } else {
+      const reports = await this.dataServ.getReportsGeoJsonByCategory(category);
+      const geojsonLayer = L.geoJSON(reports as GeoJsonObject, {
+        pointToLayer: this.myPointToLayer.bind(this),
+        onEachFeature: this.myOnEachFeature.bind(this),
+      });
+      geojsonLayer.addTo(this.map);
+    }
   }
 
   private createSimplePopupContent(properties: Properties): string {

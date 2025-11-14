@@ -1,11 +1,20 @@
 <div class="new-report-container">
     
     <div class="back-button-container">
-    <button mat-button class="back-button" (click)="goBack()">
-      <mat-icon>arrow_back</mat-icon>
-      Indietro
-    </button>
-  </div>
+        <button mat-button class="back-button" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Indietro
+        </button>
+        <div class="location-button">
+            <button mat-icon-button (click)="getCurrentPosition()">
+                <mat-icon>my_location</mat-icon>
+            </button>
+            <button mat-icon-button (click)="showMapPicker = true">
+                <mat-icon>near_me</mat-icon>
+            </button>
+        </div>
+    </div>
+
 
     <form class="report-form" [formGroup]="reportForm" (ngSubmit)="postReport()">
         <mat-form-field class="input-full-width">
@@ -77,5 +86,15 @@
             
             <button matButton="tonal" [disabled]="!reportForm.valid || images.length===0 || !hasSelectedCategory()" type="submit">Invia</button>
         </form>
+        <div style="color: red;">
+            @if(showNoPositionMsg){
+                <h2>Seleziona prima una posizione!</h2>
+            }
+        </div>
+        <div>
+            @if(showMapPicker) {
+                <app-map-picker (positionSelected)="onPositionSelected($event)"></app-map-picker>
+            }
+        </div>
     </div>
         

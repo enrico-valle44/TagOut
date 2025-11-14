@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -14,6 +14,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { LocalStorageService } from '../../services/local-storage-service/local-storage.service';
 import { Router } from '@angular/router';
+import { MapPicker } from '../map-picker/map-picker';
 
 @Component({
   selector: 'app-new-report',
@@ -24,6 +25,7 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatIcon,
     MatSelectModule,
+    MapPicker,
   ],
   templateUrl: './new-report.html',
   styleUrl: './new-report.scss',
@@ -37,6 +39,9 @@ export class NewReport {
   public categoryNames: string[] = [];
   public images: string[] = [];
   //public selectedFiles: File[] = [];
+  public pos: { lat: number; lng: number } | null = null;
+  public showMapPicker = false;
+  public showNoPositionMsg = false;
 
   public reportForm = this.fb.group({
     title: ['', Validators.required],
@@ -44,7 +49,9 @@ export class NewReport {
     categories: this.fb.array([this.fb.control('')]),
   });
 
-  constructor(private router: Router) {
+  constructor(private router: Router) {}
+
+  ngOnInit() {
     this.dataServ.getCategories().then((categoryNames: string[]) => {
       this.categoryNames = categoryNames;
     });
@@ -54,16 +61,6 @@ export class NewReport {
     return this.reportForm.get('categories') as FormArray;
   }
 
-  addCategoryInput() {
-    this.categories.push(this.fb.control(''));
-  }
-
-  removeCategoryInput(index: number) {
-    console.log(index);
-    this.categories.removeAt(index);
-  }
-
-  //crea base64
   onImageSelected(event: Event) {
     const element = event.target as HTMLInputElement;
     if (element.files && element.files.length > 0) {
@@ -76,20 +73,45 @@ export class NewReport {
     }
   }
 
+  onPositionSelected(pos: { lat: number; lng: number }) {
+    this.pos = pos;
+    this.showMapPicker = false;
+  }
+
+  async getCurrentPosition() {
+    try {
+      const geoPos = await this.locationServ.getPosition();
+      this.pos = {
+        lat: geoPos.coords.latitude,
+        lng: geoPos.coords.longitude,
+      };
+      this.showMapPicker = false;
+    } catch (err) {
+      console.error('Errore geolocalizzazione:', err);
+    }
+  }
+
   async postReport() {
+    if (!this.pos) {
+      this.showNoPositionMsg = true;
+      setTimeout(() => (this.showNoPositionMsg = false), 3000); 
+      return;
+    }
     const newReport = {
       title: this.reportForm.value.title!,
       description: this.reportForm.value.description!,
       categories: this.reportForm.value.categories as string[],
       images: this.images,
       dateReport: new Date().toISOString(),
-      lat: 0,
-      lng: 0,
+      // lat: 0,
+      // lng: 0,
+      lat: this.pos.lat,
+      lng: this.pos.lng,
     };
 
-    const pos = await this.locationServ.getPosition();
-    newReport.lat = pos.coords.latitude;
-    newReport.lng = pos.coords.longitude;
+    //const pos = await this.locationServ.getPosition();
+    //newReport.lat = pos.coords.latitude;
+    //newReport.lng = pos.coords.longitude;
 
     await this.dataServ.postReport(newReport, this.localStorageServ.getId());
 
@@ -117,6 +139,15 @@ export class NewReport {
     )[];
     return categories?.some((cat) => cat != null && cat.trim() !== '');
   }
+
+  // addCategoryInput() {
+  //   this.categories.push(this.fb.control(''));
+  // }
+
+  // removeCategoryInput(index: number) {
+  //   console.log(index);
+  //   this.categories.removeAt(index);
+  // }
 
   /*onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;

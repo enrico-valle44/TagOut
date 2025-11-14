@@ -1,0 +1,11 @@
+<div id="map">
+</div>
+@if(showNoClickMsg){
+
+    <div style="color: red;">
+      <h4>Clicca sulla mappa prima di confermare</h4>
+    </div>
+}
+<button matButton (click)="confirm()">
+    Conferma
+</button>
