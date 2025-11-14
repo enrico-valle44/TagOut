@@ -1,6 +1,7 @@
 <div class = "report-grid">
   <mat-card class="report-card" appearance="outlined" >
-    <mat-card-header>
+    <mat-card-header class="custum-card-header">
+      <div class="header-content">
       <mat-card-title>{{report()?.title}}</mat-card-title>
       <mat-card-subtitle>
         <div>
@@ -10,31 +11,32 @@
            <span class="date">{{report()?.dateReport | date:'dd/MM/yyyy HH:mm'}}</span>
         </div>
       </mat-card-subtitle>
+      </div>
+
+      <div class="header-categories" *ngIf="report()?.categories?.length">
+     <span class="category-tag" 
+          *ngFor="let category of report()?.categories | slice:0:2">
+      {{ category }}
+     </span>
+     <span class="category-more" 
+          *ngIf="report()?.categories!.length > 2">
+      +{{ (report()?.categories?.length || 0) - 2 }}
+     </span>
+    </div>
+
     </mat-card-header>
   
     <img mat-card-image src="{{report()!.images[0]}}" alt="{{report()?.title}}">
     <mat-card-content>
       <p>
        {{report()?.description}}
-      </p>
+      </p> 
     </mat-card-content>
-     <div class="categories-section" *ngIf="report()?.categories?.length">
-      <div class="categories-container">
-        <span class="category-tag" 
-              *ngFor="let category of report()?.categories | slice:0:3">
-          {{ category }}
-        </span>
-        <span class="category-more" 
-              *ngIf="report()?.categories!.length  > 3">
-          +{{ (report()?.categories?.length || 0) - 3 }}
-        </span>
-      </div>
-    </div>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="showActions()">
+      <div class="actions-spacer"></div>
       <button matButton routerLink="/detail/{{report()?.id}}">
         <mat-icon>more_horiz</mat-icon>
       </button>
-      <button matButton>SHARE</button>
     </mat-card-actions>
   </mat-card>
 </div>

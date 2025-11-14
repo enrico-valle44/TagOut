@@ -6,7 +6,9 @@
   max-width: 600px;
   width: 100%;
   padding: 16px;
+  box-sizing: border-box;
 }
+
 .back-button-container {
   width: 100%;
   margin-bottom: 8px;
@@ -18,6 +20,8 @@
   gap: 8px;
   color: #3f51b5;
   font-weight: 500;
+  font-size: 14px;
+  min-height: 40px;
   
   mat-icon {
     font-size: 20px;
@@ -29,46 +33,71 @@
     background-color: rgba(63, 81, 181, 0.04);
   }
 }
-.detail-card{
-  width:100%;
-}
-.report-card{
+
+/* STILI PER IL REPORT-CARD NEL DETAIL */
+::ng-deep app-report-card {
   width: 100%;
-  overflow: hidden;
+  
+  .report-card {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .custom-card-header {
+    padding: 0 0 12px 0 !important;
+  }
+  
+  .header-content {
+    mat-card-title {
+      font-size: 1.4rem;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    
+    mat-card-subtitle {
+      font-size: 0.9rem;
+    }
+  }
+  
+  img[mat-card-image] {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  mat-card-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+  }
 }
-.custom-card-content{
-  padding:  0 16px 16px !important;
+
+.additional-content {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-.custom-card-header {
-  padding: 16px 16px 0 !important;
-  background-color: #f5f5f5;
-}
-.custom-card-header mat-card-title {
-  font-size:24px;
-  font-weight: 500;
-  color: #333;
+  width: 100%;
 }
 
-
-.custom-card-header mat-card-subtitle {
-  font-size: 14px;
-  color: #666;
+/* Galleria immagini */
+.image-gallery {
+  width: 100%;
 }
 
 .image-container {
   position: relative;
-  aspect-ratio: 4/3;
+  aspect-ratio: 1 / 1;
   width: 100%;
   background-color: #000;
   overflow: hidden;
+  border-radius: 8px;
 }
+
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
@@ -85,16 +114,20 @@
   font-size: 24px;
   cursor: pointer;
   display: flex;
+  align-items: center;
   justify-content: center;
-  transition:background 0.3s ease;
+  transition: background 0.3s ease;
   z-index: 2;
 }
+
 .nav-arrow:hover {
   background: rgba(0, 0, 0, 0.8);
 }
+
 .nav-arrow.left {
   left: 10px;
 }
+
 .nav-arrow.right {
   right: 10px;
 }
@@ -109,47 +142,72 @@
   gap: 8px;
   z-index: 2;
 }
-.dots-container span{
 
+.dots-container span {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  transition:background-color 0.3s ease;
+  transition: background-color 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.8);
 }
+
 .dots-container span:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
+
 .dots-container span.active {
   background-color: rgba(255, 255, 255, 1);
-  transform:scale(1.2);
+  transform: scale(1.2);
 }
-.location-section{
+
+/* Categorie complete */
+.full-categories {
+  width: 100%;
+}
+
+.chips-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.chips-container mat-chip {
+  font-size: 14px;
+  background-color: #3f51b5;
+  color: white;
+  min-height: 32px;
+}
+
+/* Location section */
+.location-section {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  padding:16px;
-  margin-top: 8px;
+  padding: 16px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #fafafa;
+  box-sizing: border-box;
 }
-.location-info{
 
+.location-info {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.location-info mat-icon{
+
+.location-info mat-icon {
   font-size: 20px;
   color: #3f51b5;
   width: 20px;
   height: 20px;
 }
-.map-link{
+
+.map-link {
   text-decoration: underline;
   color: #3f51b5;
   font-weight: 500;
@@ -157,54 +215,237 @@
   cursor: pointer;
   transition: color 0.2s ease;
 }
-.map-link:hover{
+
+.map-link:hover {
   color: #303f9f;
-  text-decoration: underline; 
-} 
-.description{
-  color: #333;
-  line-height: 1.6;
-  margin: 0;
-  font-size: 16px;
-  white-space: pre-wrap;
-  padding: 0 8px;
+  text-decoration: underline;
 }
-.chips-container{
-  display: flex;
-  gap: 0 8px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-.chips-container mat-chip{
-  font-size: 14px;
-  background-color: #3f51b5;
-  color: white;
-}
-/* Responsive per mobile */
-@media (max-width: 600px) {
+
+/* ========== RESPONSIVE MOBILE ========== */
+@media (max-width: 768px) {
   .detail-container {
     max-width: 100%;
-    padding: 8px;
+    padding: 12px;
+    gap: 12px;
   }
-  .custom-card-header {
-    padding: 12px !important;
+  
+  .back-button {
+    font-size: 13px;
+    padding: 6px 12px;
+    min-height: 36px;
+    
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
   }
-  .custom-card-header mat-card-title {
-    font-size: 20px;
+  
+  /* REPORT-CARD MOBILE */
+  ::ng-deep app-report-card {
+    .report-card {
+      padding: 12px !important;
+    }
+    
+    .custom-card-header {
+      padding: 0 0 10px 0 !important;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .header-content {
+      margin-right: 0;
+      margin-bottom: 10px;
+      
+      mat-card-title {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+      }
+      
+      mat-card-subtitle {
+        font-size: 0.8rem;
+      }
+    }
+    
+    .header-categories {
+      justify-content: flex-start;
+      margin-left: 0;
+      margin-top: 6px;
+      
+      .category-tag {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+    }
+    
+    mat-card-content p {
+      font-size: 0.85rem;
+    }
+  }
+  
+  .additional-content {
+    gap: 12px;
+  }
+  
+  /* Galleria mobile */
+  .image-container {
+    border-radius: 6px;
   }
   
   .nav-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
   }
-  .location-section{
+  
+  .nav-arrow.left {
+    left: 6px;
+  }
+  
+  .nav-arrow.right {
+    right: 6px;
+  }
+  
+  .dots-container {
+    bottom: 10px;
+    gap: 6px;
+  }
+  
+  .dots-container span {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Categorie mobile */
+  .chips-container {
+    gap: 6px;
+  }
+  
+  .chips-container mat-chip {
+    font-size: 12px;
+    min-height: 28px;
+    padding: 0 12px;
+  }
+  
+  /* Location mobile */
+  .location-section {
     padding: 12px;
+    border-radius: 6px;
   }
-  .report-card .mat-mdc-card-content{
-    padding:  12px !important;
-    
+  
+  .location-info {
+    gap: 6px;
   }
-
+  
+  .location-info mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+  
+  .map-link {
+    font-size: 14px;
+  }
 }
+
+/* Extra small devices (phones under 480px) */
+@media (max-width: 480px) {
+  .detail-container {
+    padding: 8px;
+    gap: 10px;
+  }
+  
+  .back-button-container {
+    margin-bottom: 4px;
+  }
+  
+  .back-button {
+    font-size: 12px;
+    padding: 4px 8px;
+    gap: 6px;
+    min-height: 32px;
     
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  /* REPORT-CARD MOBILE PICCOLO */
+  ::ng-deep app-report-card {
+    .report-card {
+      padding: 10px !important;
+      border-radius: 8px;
+    }
+    
+    .header-content {
+      mat-card-title {
+        font-size: 1.1rem;
+      }
+      
+      mat-card-subtitle {
+        font-size: 0.75rem;
+      }
+    }
+    
+    .header-categories {
+      .category-tag {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+      }
+    }
+    
+    mat-card-content p {
+      font-size: 0.8rem;
+    }
+    
+    img[mat-card-image] {
+      border-radius: 6px;
+    }
+  }
+  
+  .additional-content {
+    gap: 10px;
+  }
+  
+  .nav-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .nav-arrow.left {
+    left: 4px;
+  }
+  
+  .nav-arrow.right {
+    right: 4px;
+  }
+  
+  .dots-container {
+    bottom: 8px;
+  }
+  
+  .chips-container mat-chip {
+    font-size: 11px;
+    min-height: 24px;
+    padding: 0 8px;
+  }
+  
+  .location-section {
+    padding: 10px;
+  }
+  
+  .map-link {
+    font-size: 13px;
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .detail-container {
+    max-width: 700px;
+    padding: 20px;
+  }
+}

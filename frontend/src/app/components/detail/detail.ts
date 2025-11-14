@@ -10,6 +10,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgIf } from '@angular/common';
 import { NgFor } from '@angular/common';
+import { ReportCard } from '../report-card/report-card';
 
 @Component({
   selector: 'app-detail',
@@ -21,7 +22,7 @@ import { NgFor } from '@angular/common';
     MatChipsModule,
     NgIf,
     NgFor,
-    
+    ReportCard
     
   ],
   templateUrl: './detail.html',

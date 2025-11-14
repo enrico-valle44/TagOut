@@ -6,10 +6,13 @@ import { LocationService } from '../../services/location-service/location-servic
 import { ReportCard } from '../report-card/report-card';
 import { Report } from '../../model/report';
 import { RouterLink } from '@angular/router';
+import { MatChipsModule } from '@angular/material/chips';
+import { Category } from '../../model/category';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-feed',
-  imports: [ReportCard, MatButtonModule, MatIconModule, RouterLink],
+  imports: [ReportCard, MatButtonModule, MatIconModule, RouterLink, MatChipsModule,NgIf],
   templateUrl: './feed.html',
   styleUrl: './feed.scss',
 })
@@ -17,6 +20,8 @@ export class Feed {
   private dataServ = inject(DataService);
   private locationServ = inject(LocationService);
   public reports: Report[] = [];
+  public filteredReports : Report[] = [];
+  public selectedCategory = '';
 
   constructor() {
     // this.dataServ.getReports().then((data) => {
@@ -40,9 +45,8 @@ export class Feed {
 
   async loadReports() {
     const unorderedReports = await this.dataServ.getReports();
-
     //this.reports = this.sortReportsByDateTime(this.reports);
-
+    
     if ('geolocation' in navigator) {
       const orderedByDistance = await this.locationServ.sortReportsByDistance(
         unorderedReports
@@ -51,7 +55,23 @@ export class Feed {
     } else {
       this.reports = this.sortReportsByDateTime(unorderedReports);
     }
+    this.filteredReports = this.reports;
   }
+
+   onChipClick(category: string) {
+    this.selectedCategory = category;
+
+    if(!category){
+
+      this.filteredReports = this.reports;
+  
+    }
+    else{
+      this.filteredReports = this.reports.filter(report => report.categories?.includes(category)
+    );
+    }
+  }
+
 
   private sortReportsByDateTime(reports: Report[]): Report[] {
     return reports.sort((a, b) => {
@@ -60,5 +80,6 @@ export class Feed {
 
       return dateB.getTime() - dateA.getTime();
     });
+    
   }
 }
