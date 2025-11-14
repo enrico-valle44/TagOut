@@ -3,7 +3,7 @@
 namespace PrototipoApi.Controllers;
 public interface IImageService
 {
-    Task<string> UploadFileImages(IFormFile file, int reportId); 
+    Task<string> UploadFileImages(IFormFile file, int reportId);
+    //Task<string> UploadImages(IFormFile file, int reportId);
     //Task<string>GetImages(int reportId);
-
 }

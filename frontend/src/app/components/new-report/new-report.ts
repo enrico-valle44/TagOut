@@ -36,6 +36,7 @@ export class NewReport {
 
   public categoryNames: string[] = [];
   public images: string[] = [];
+  //public selectedFiles: File[] = [];
 
   public reportForm = this.fb.group({
     title: ['', Validators.required],
@@ -62,6 +63,7 @@ export class NewReport {
     this.categories.removeAt(index);
   }
 
+  //crea base64
   onImageSelected(event: Event) {
     const element = event.target as HTMLInputElement;
     if (element.files && element.files.length > 0) {
@@ -74,43 +76,6 @@ export class NewReport {
     }
   }
 
-  removeImage(index: number) {
-    this.images.splice(index, 1);
-  }
-
-  goBack(){
-    this.router.navigate(['/map']);
-  }
-
-  /*async postReport() {
-    try {
-      const newReport = {
-        title: this.reportForm.value.title!,
-        description: this.reportForm.value.description!,
-        categories: this.reportForm.value.categories as string[],
-        images: this.images,
-        date: new Date().toISOString(),
-        lat: 0,
-        lng: 0,
-      };
-
-      const pos = await this.locationServ.getPosition();
-      newReport.lat = pos.coords.latitude;
-      newReport.lng = pos.coords.longitude;
-
-      await this.dataServ.postReport(newReport, this.localStorageServ.getId());
-
-      this.reportForm.reset();
-      this.images = [];
-      this.categories.clear();
-
-      console.log('Navigazione verso /map');
-      await this.router.navigate(['/map']);
-      console.log('Navigazione completata');
-    } catch (err) {
-      console.error('Errore postReport:', err);
-    }
-  }*/
   async postReport() {
     const newReport = {
       title: this.reportForm.value.title!,
@@ -128,7 +93,7 @@ export class NewReport {
 
     await this.dataServ.postReport(newReport, this.localStorageServ.getId());
 
-    alert('Il report è stato pubblicato !');
+    //alert('Il report è stato pubblicato !');
 
     this.reportForm.reset();
     this.images = [];
@@ -136,9 +101,78 @@ export class NewReport {
 
     this.router.navigateByUrl('/map');
   }
-  catch(err: Error)
-  {
-    console.error('Errore postReport:', err);
-    alert('Errore durante la pubblicazione del report.Riprova.');
+
+  removeImage(index: number) {
+    this.images.splice(index, 1);
   }
+
+  goBack() {
+    this.router.navigate(['/map']);
+  }
+
+  hasSelectedCategory(): boolean {
+    const categories = this.reportForm.get('categories')?.value as (
+      | string
+      | null
+    )[];
+    return categories?.some((cat) => cat != null && cat.trim() !== '');
+  }
+
+  /*onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files) return;
+
+    for (let i = 0; i < input.files.length; i++) {
+      const file = input.files[i];
+      this.selectedFiles.push(file);
+    }
+  }
+
+  async postReport() {
+    const newReport = {
+      title: this.reportForm.value.title!,
+      description: this.reportForm.value.description!,
+      categories: this.reportForm.value.categories as string[],
+      dateReport: new Date().toISOString(),
+      images: [],
+      lat: 0,
+      lng: 0,
+    };
+
+    const pos = await this.locationServ.getPosition();
+    newReport.lat = pos.coords.latitude;
+    newReport.lng = pos.coords.longitude;
+
+    await this.dataServ.postReport(newReport, this.localStorageServ.getId());
+    const reportId = await this.dataServ.postReport(
+      newReport,
+      this.localStorageServ.getId()
+    );
+
+    for (const file of this.selectedFiles) {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('reportId', reportId);
+
+      const imgResponse = await fetch(
+        `http://localhost:5089/Image/upload/report/${reportId}`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+
+      if (!imgResponse.ok) console.error('Errore upload immagine', file.name);
+    }
+
+    alert('Report e immagini caricati con successo!');
+
+    // reset form
+    this.reportForm.reset();
+    this.images = [];
+    this.selectedFiles = [];
+    this.categories.clear();
+
+    this.router.navigateByUrl('/map');
+  }*/
 }

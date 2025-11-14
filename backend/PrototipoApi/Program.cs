@@ -13,6 +13,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+//var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+//var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+//var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+//var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+//var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
+
 builder.Services.AddDbContext<DatabaseContext>(options =>
     {
         //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); //serve per specificare che non vogliamo un contesto in cui vengano segnate le modifiche
@@ -36,7 +43,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         {
-            policy.WithOrigins("http://localhost:4200") // il tuo frontend
+            policy.WithOrigins("http://localhost:8080", "http://backend:5089", "http://localhost:4200")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -48,9 +55,22 @@ var app = builder.Build();
 // 2. Usa CORS
 app.UseCors(MyAllowSpecificOrigins);
 
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
+        db.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Migrazione Database fallita: {ex.Message}");
+    }
+}
+
 app.UseAuthorization();
 
-// Configure the HTTP request pipeline. usiamo swagger solo se siamo in modalita sviluppo
+// Configure the HTTP request pipeline. usiamo swagger solo se siamo in modalità sviluppo
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

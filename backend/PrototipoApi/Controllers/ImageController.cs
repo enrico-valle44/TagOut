@@ -1,5 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using PrototipoService.Services;
 
 namespace PrototipoApi.Controllers;
 
@@ -29,5 +31,17 @@ public class ImageController : ControllerBase
         return Created("", result);
     }
 
-
+    //[HttpPost("upload")]
+    //public async Task<IActionResult> Upload(IFormFile file, int reportId)
+    //{
+    //    try
+    //    {
+    //        var path = await _service.UploadImages(file, reportId);
+    //        return Ok(new { path });
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return BadRequest(new { message = ex.Message });
+    //    }
+    //}
 }

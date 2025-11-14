@@ -75,7 +75,7 @@
                 />
             </div>
             
-            <button matButton="tonal" [disabled]="!reportForm.valid" type="submit">Invia</button>
+            <button matButton="tonal" [disabled]="!reportForm.valid || images.length===0 || !hasSelectedCategory()" type="submit">Invia</button>
         </form>
     </div>
         

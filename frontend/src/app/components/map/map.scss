@@ -35,3 +35,41 @@
   margin: 0 !important;
   padding: 0 !important;
 }
+
+.chip-overlay {
+  margin-top: 66px;
+  position: fixed;
+  top: 2vh;         
+  left: 50%;      
+  transform: translateX(-33%); 
+  z-index: 1100;           
+  background: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  padding: 4px 8px;
+  //display: flex;
+  gap: 6px;
+
+  flex-wrap: nowrap; /* tutte su un’unica riga */
+  display: flex;         
+  justify-content: center;
+  overflow: hidden;           /* nessuno scroll */
+  width: 90%;                 /* larghezza massima della fila di chips */
+  //max-width: 500px;           /* opzionale: limita la larghezza massima */
+}
+
+.chip-overlay mat-chip {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;      /* include padding nella larghezza */
+  
+  flex: 0 0 auto;                /* ogni chip prende uguale spazio */
+  max-width: 33%;              /* massimo un terzo della larghezza della fila */
+  min-width: 0 !important;     /* permette di restringersi */
+
+  padding: 2px 6px !important;    /* meno padding interno */
+  //font-size: 0.8rem !important;   /* testo più piccolo */
+  //height: 28px !important;        /* altezza più compatta */
+  line-height: 28px !important;   /* allinea il testo verticalmente */
+}

@@ -87,6 +87,41 @@ public class ReportController : ControllerBase
         return Content(geoJson, "application/json");
     }
 
+    [HttpGet("geojson/{categoryName}")]
+    public IActionResult GetGeoJsonByReportCategory([FromRoute] string categoryName)
+    {
+        var geoJson = _geoService.GetReportsByCategoryGeoJson(categoryName);
+        return Content(geoJson, "application/json");
+    }
+
+    [HttpGet("category/{categoryName}")]
+    public async Task<IActionResult> GetReportsByCategory([FromRoute] string categoryName)
+    {
+        _logger.LogInformation($"Richiesta GET /report/category/{categoryName}");
+
+        try
+        {
+            var reports = await _serviceReport.GetAllReportsByCategory(categoryName);
+
+            if (reports == null || !reports.Any())
+            {
+                _logger.LogWarning($"Nessun report trovato per la categoria {categoryName}");
+                return NotFound($"Nessun report trovato per la categoria {categoryName}");
+            }
+
+            return Ok(reports);
+        }
+        catch (KeyNotFoundException ex)
+        {
+            _logger.LogWarning(ex, $"Categoria {categoryName} non trovata");
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Errore imprevisto durante il recupero dei report per categoria {categoryName}");
+            return StatusCode(500, "Errore interno del server");
+        }
+    }
     [HttpPost("add/{idUser}")]
     public async Task<IActionResult> CreateReport([FromRoute] int idUser, [FromBody] ReportDTO reportDTO)
     {

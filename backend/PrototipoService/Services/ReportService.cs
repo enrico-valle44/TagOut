@@ -27,8 +27,8 @@ public class ReportService : IReportService
             IdUser = r.IdUser,
             Title = r.Title,
             Description = r.Description,
-             DateReport = r.DateReport.ToString("o"), 
-             Categories = r.Categories.Select(c => c.Name).ToList(),
+            DateReport = r.DateReport.ToString("o"),
+            Categories = r.Categories.Select(c => c.Name).ToList(),
             Images = r.Images.Select(i => i.Path).ToList(),
             Longitude = r.Longitude,
             Latitude = r.Latitude,
@@ -44,8 +44,8 @@ public class ReportService : IReportService
                 IdUser = r.IdUser,
                 Title = r.Title,
                 Description = r.Description,
-                DateReport = r.DateReport.ToString("o"),             
-               Categories = r.Categories.Select(c => c.Name).ToList(),
+                DateReport = r.DateReport.ToString("o"),
+                Categories = r.Categories.Select(c => c.Name).ToList(),
                 Images = r.Images.Select(i => i.Path).ToList(),
                 Longitude = r.Longitude,
                 Latitude = r.Latitude,
@@ -58,9 +58,9 @@ public class ReportService : IReportService
         var reports = await _context.Reports
             .AsNoTracking()
             .Where(r => r.IdUser == userId)
-            .Include(r => r.User)         
-            .Include(r => r.Images)      
-            .Include(r => r.Categories)   
+            .Include(r => r.User)
+            .Include(r => r.Images)
+            .Include(r => r.Categories)
             .OrderByDescending(r => r.DateReport)
             .Select(r => new ReportViewModel
             {
@@ -68,9 +68,9 @@ public class ReportService : IReportService
                 IdUser = r.IdUser, //teniamolo se no lo restituisce sempre = 0 ... poi vediamo
                 Title = r.Title,
                 Description = r.Description,
-                 DateReport = r.DateReport.ToString("o"), 
-                 Categories = r.Categories.Select(c => c.Name).ToList(),
-                Images= r.Images.Select(i => i.Path).ToList(),
+                DateReport = r.DateReport.ToString("o"),
+                Categories = r.Categories.Select(c => c.Name).ToList(),
+                Images = r.Images.Select(i => i.Path).ToList(),
                 Longitude = r.Longitude,
                 Latitude = r.Latitude,
             })
@@ -79,6 +79,31 @@ public class ReportService : IReportService
         return reports;
     }
 
+    public async Task<List<ReportViewModel>> GetAllReportsByCategory(string categoryName)
+    {
+        var reports = await _context.Reports
+            .AsNoTracking()
+            .Where(r => r.Categories.Any(c => c.Name.Equals(categoryName)))
+            .Include(r => r.User)
+            .Include(r => r.Images)
+            .Include(r => r.Categories)
+            .OrderByDescending(r => r.DateReport)
+            .Select(r => new ReportViewModel
+            {
+                Id = r.Id,
+                IdUser = r.IdUser,
+                Title = r.Title,
+                Description = r.Description,
+                DateReport = r.DateReport.ToString("o"),
+                Categories = r.Categories.Select(c => c.Name).ToList(),
+                Images = r.Images.Select(i => i.Path).ToList(),
+                Longitude = r.Longitude,
+                Latitude = r.Latitude,
+            })
+            .ToListAsync();
+
+        return reports;
+    }
     public async Task AddReport(int idUser, ReportDTO reportDTO)
     {
         var user = await _context.UserInfo.FindAsync(idUser);
@@ -108,7 +133,6 @@ public class ReportService : IReportService
         _context.Reports.Add(report);
         await _context.SaveChangesAsync();
 
-       
     }
     public async Task UpdateReport(int id, ReportUpdateDTO reportDTO)
     {
@@ -173,4 +197,6 @@ public class ReportService : IReportService
         _context.Reports.Remove(r);
         await _context.SaveChangesAsync();
     }
+
+
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using PrototipoApi.Controllers;
+using PrototipoService.Entities;
 
 namespace PrototipoService.Services;
 
@@ -71,5 +72,35 @@ public class ImageService : IImageService
         //se fallisce una delle 2 operazioni (begin o commit): ROLLBACK e si annulla la begin
         return filePathFull;
        
-    } 
+    }
+
+    //public async Task<string> UploadImages(IFormFile file, int reportId)
+    //{
+    //    if (file == null || file.Length == 0)
+    //        throw new ArgumentException("File non valido");
+
+    //    string folderPath = "/app/immagini";
+
+    //    if (!Directory.Exists(folderPath))
+    //        Directory.CreateDirectory(folderPath);
+
+    //    string fileName = Path.GetFileName(file.FileName);
+    //    string filePathFull = Path.Combine(folderPath, fileName);
+
+    //    using (var stream = new FileStream(filePathFull, FileMode.Create))
+    //    {
+    //        await file.CopyToAsync(stream);
+    //    }
+
+    //    var imageEntity = new Image
+    //    {
+    //        Path = $"/immagini/{fileName}",
+    //        ReportId = reportId
+    //    };
+
+    //    _context.Images.Add(imageEntity);
+    //    await _context.SaveChangesAsync();
+
+    //    return imageEntity.Path;
+    //}
 }
