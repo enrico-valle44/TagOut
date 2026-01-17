@@ -1,12 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
-using Npgsql;
 using PrototipoApi.Controllers;
 using PrototipoService;
 using PrototipoService.Services;
 using PrototipoService.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args); //creiamo l app con il builder
+
+var projectRoot = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.FullName ?? "", ".env");
+if (File.Exists(projectRoot))
+{
+    Env.Load(projectRoot);
+}
 
 builder.Services.AddControllers(); //builder.Services contiene tutte le dipendenze dell'applicativo, usiamo anche quelle di microsoft
 // Learn more https://aka.ms/aspnetcore/swashbuckle
@@ -56,6 +62,12 @@ var app = builder.Build();
 
 // Serve immagini statiche
 var filePath = builder.Configuration["FilePath"] ?? "/app/immagini";
+
+if (!Directory.Exists(filePath))
+{
+    Directory.CreateDirectory(filePath);
+}
+
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(filePath),
