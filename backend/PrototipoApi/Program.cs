@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Npgsql;
 using PrototipoApi.Controllers;
 using PrototipoService;
@@ -12,13 +13,13 @@ builder.Services.AddControllers(); //builder.Services contiene tutte le dipenden
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-//var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
-//var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-//var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-//var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-//var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
+var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
+//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
     {
@@ -52,6 +53,16 @@ builder.Services.AddCors(options =>
 
 //buildiamo l'app
 var app = builder.Build();
+
+// Serve immagini statiche
+var filePath = builder.Configuration["FilePath"] ?? "/app/immagini";
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(filePath),
+    RequestPath = "/immagini"
+});
+
+
 // 2. Usa CORS
 app.UseCors(MyAllowSpecificOrigins);
 
@@ -61,6 +72,17 @@ using (var scope = app.Services.CreateScope())
     {
         var db = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
         db.Database.Migrate();
+
+        if (!db.Categories.Any())
+        {
+            db.Categories.AddRange(
+                new PrototipoService.Entities.Category { Name = "Sport", Description = "Graffiti riguardo lo sport, principalmente squadre di calcio" },
+                new PrototipoService.Entities.Category { Name = "Politica", Description = "Graffiti riguardo la politica e l'attivismo" },
+                new PrototipoService.Entities.Category { Name = "Cultura", Description = "Graffiti riguardo la cultura  e l'arte in generale" }
+            );
+            db.SaveChanges();
+            Console.WriteLine("Categorie iniziali inserite nel database.");
+        }
     }
     catch (Exception ex)
     {

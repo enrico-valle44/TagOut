@@ -1,0 +1,57 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile-fe
+    #image: animal-report
+    container_name: frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile-be
+    container_name: backend
+    ports:
+      - "5089:5089"
+      - "7279:7279"
+    volumes:
+      - ./backend/uploads:/app/immagini
+      #- type: bind
+      #  source: C:\TagOut\Images
+      #  target: /app/immagini
+      #- type: bind
+      #  source: C:\TagOut\appsettings.json
+      #  target: /app/appsettings.json
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - FilePath=/app/immagini
+      - PublicImageBaseUrl=http://localhost:5089/immagini
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
